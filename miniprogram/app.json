@@ -1,13 +1,44 @@
 {
-  "pages": [
-    "pages/index/index"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
-  },
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/information/information",
+        "pages/mine/mine",
+        "pages/complaint/complaint",
+        "pages/complaint/detail/detail",
+        "pages/complaint/form/form",
+        "pages/mine/rankingList/rankingList",
+        "pages/mine/notification/notification"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F6F6F6",
+        "navigationBarTitleText": "守护大气",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#bfbfbf",
+        "selectedColor": "#3387b5",
+        "borderStyle": "black",
+        "list": [
+            {
+                "selectedIconPath": "/static/img/project_selected.png",
+                "iconPath": "/static/img/project.png",
+                "pagePath": "pages/information/information",
+                "text": "大气"
+            },
+            {
+                "selectedIconPath": "/static/img/project_selected.png",
+                "iconPath": "/static/img/project.png",
+                "pagePath": "pages/complaint/complaint",
+                "text": "投诉"
+            },
+            {
+                "selectedIconPath": "/static/img/mine_selected.png",
+                "iconPath": "/static/img/mine.png",
+                "pagePath": "pages/mine/mine",
+                "text": "我的"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
 }
