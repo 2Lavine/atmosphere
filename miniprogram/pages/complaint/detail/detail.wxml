@@ -1,2 +1,4 @@
 <!--miniprogram/pages/complaint/detail/detail.wxml-->
-<text>miniprogram/pages/complaint/detail/detail.wxml</text>
+<view class="container">
+  <van-steps steps="{{ steps }}" active="{{ active }}" style="width:100%"/>
+</view>
