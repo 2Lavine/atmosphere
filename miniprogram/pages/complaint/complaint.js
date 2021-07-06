@@ -80,7 +80,7 @@ Page({
         ],
         value1: 0,
         value2: 'a',
-        showSearch: false
+        showSearch: true
     },
 
     /**

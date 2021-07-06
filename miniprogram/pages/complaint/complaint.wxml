@@ -1,6 +1,6 @@
 <!--miniprogram/pages/complaint/complaint.wxml-->
-<view class="top-graph">
-  <ec-canvas class="top-graph1" id="mychart-grah" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+<view class="top-graph" wx:if="{{!showSearch}}">
+  <ec-canvas id="mychart-grah" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
 </view>
 <view class="container">
   <van-search class="search" value="{{ value }}" placeholder="请输入搜索关键词" input-align="center" bind:search="onSearch">
@@ -16,7 +16,7 @@
   </block>
   <block wx:else>
 
-    <view class="card">
+    <view class="card top-card">
       <view class="bottom">
         <view class="bottom-item">
           <view class="bottom-item-name red-circle">当月受理</view>

@@ -1,6 +1,6 @@
 /* miniprogram/pages/complaint/complaint.wxss */
 .container {
-  height: 80vh;
+  height: 70vh;
   display: flex;
   /* display: releati; */
   flex-direction: column;
@@ -39,6 +39,8 @@
 .top-graph {
   position: relative;
   padding-top: 20rpx;
+  border-radius: 20rpx;
+  background-color: white;
   height: 400rpx;
   width: 700rpx;
   margin: 0 auto;
@@ -103,4 +105,8 @@
   margin-left:28rpx ;
   color: rgba(0, 0, 0, .7);
   font-size: 26rpx;
+}
+.top-card{
+  margin: 0;
+  border-radius: 0 0 20rpx 20rpx;
 }
