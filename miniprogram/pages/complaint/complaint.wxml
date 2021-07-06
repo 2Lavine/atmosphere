@@ -1,7 +1,4 @@
 <!--miniprogram/pages/complaint/complaint.wxml-->
-<view class="top-graph" wx:if="{{!showSearch}}">
-  <ec-canvas id="mychart-grah" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
-</view>
 <view class="container">
   <van-search class="search" value="{{ value }}" placeholder="请输入搜索关键词" input-align="center" bind:search="onSearch">
   </van-search>
@@ -17,6 +14,9 @@
   <block wx:else>
 
     <view class="card top-card">
+      <view class="top-graph">
+        <ec-canvas id="mychart-grah" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+      </view>
       <view class="bottom">
         <view class="bottom-item">
           <view class="bottom-item-name red-circle">当月受理</view>
@@ -39,7 +39,7 @@
       <view class="table-name">投诉明细</view>
       <scroll-view>
         <van-grid column-num="2" border="{{ true }}" center="{{ false }}">
-          <van-grid-item use-slot wx:for="{{8}}" wx:for-item="index" wx:key="index">
+          <van-grid-item use-slot wx:for="{{22}}" wx:for-item="index" wx:key="index">
             <view style="margin-left:12rpx">
               <view style="font-size:30rpx;color:rgba(0,0,0,0.2);margin-bottom:5rpx"> 文本</view>
               <view style="font-size:30rpx;color:rgba(0, 0, 0, .7)"> 23</view>
