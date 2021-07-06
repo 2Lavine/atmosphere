@@ -82,7 +82,12 @@ Page({
         value2: 'a',
         showSearch: false
     },
-
+    onGoDetail(){
+        console.log(233);
+        wx.navigateTo({
+          url: './detail/detail',
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */

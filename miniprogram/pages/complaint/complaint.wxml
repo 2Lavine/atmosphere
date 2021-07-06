@@ -8,7 +8,7 @@
   </van-dropdown-menu> -->
   <block wx:if="{{showSearch}}">
     <view wx:for="array12321312" style="width:100%" wx:key="index">
-      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%" />
+      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%" bind:tap="onGoDetail"/>
     </view>
   </block>
   <block wx:else>
