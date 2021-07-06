@@ -13,13 +13,18 @@
   /* background-color: white; */
   height: 100vh;
 }
-
+.icon-group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .like {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20rpx;
+  margin-left: 20rpx;
   color: pink
 }
 

@@ -13,9 +13,15 @@
       <van-cell center input-align="right" title="具体描述" value="{{complaintDescription}}" border="{{false}}" />
       <van-cell center input-align="right" title="投诉单位" value="{{unit}}" border="{{false}}" />
       <van-cell center input-align="right" title="留言" value="{{otherMessage}}" border="{{false}}" />
-      <view class="like" style="background:white">
-        <van-icon name="{{likeName}}" color="pink" size='3rem' bind:click="likeHandler" border="{{ false }}" />
-        {{likeNumber}}
+      <view class="icon-group">
+        <view class="like" style="background:white">
+          <van-icon name="{{likeName}}" color="pink" size='3rem' bind:click="likeHandler" border="{{ false }}" />
+          {{likeNumber}}
+        </view>
+        <view class="like" style="background:white">
+          <van-icon name="{{collectName}}" color="pink" size='3rem' bind:click="collectHandler" border="{{ false }}" />
+          收藏
+        </view>
       </view>
     </van-cell-group>
   </view>

@@ -24,6 +24,7 @@ Page({
         ],
         active: 1,
         likeName: 'like-o',
+        collectName: 'delete-o',
         likeNumber: '20',
         commentlikeNumber: '20',
         imageURL: '../../../../../../../../../pages/complaint/pic.webp',
@@ -45,6 +46,18 @@ Page({
             this.setData({
                 likeNumber: +this.data.likeNumber - 1,
                 likeName: 'like-o'
+            })
+        }
+    },
+    collectHandler() {
+        // this.updateBackEnd
+        if (this.data.collectName === 'delete-o')
+            this.setData({
+                collectName: 'delete'
+            })
+        else {
+            this.setData({
+                collectName: 'delete-o'
             })
         }
     },
