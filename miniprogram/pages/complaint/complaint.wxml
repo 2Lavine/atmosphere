@@ -8,7 +8,8 @@
   </van-dropdown-menu> -->
   <block wx:if="{{showSearch}}">
     <view wx:for="array12321312" style="width:100%" wx:key="index">
-      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%" bind:tap="onGoDetail"/>
+      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%"
+        bind:tap="onGoDetail" />
     </view>
   </block>
   <block wx:else>
@@ -36,18 +37,14 @@
       </view>
     </view>
     <view class="card">
-      <view class="table-name">投诉明细</view>
-      <scroll-view>
-        <van-grid column-num="2" border="{{ true }}" center="{{ false }}">
-          <van-grid-item use-slot wx:for="{{22}}" wx:for-item="index" wx:key="index">
-            <view style="margin-left:12rpx">
-              <view style="font-size:30rpx;color:rgba(0,0,0,0.2);margin-bottom:5rpx"> 文本</view>
-              <view style="font-size:30rpx;color:rgba(0, 0, 0, .7)"> 23</view>
-            </view>
-          </van-grid-item>
-        </van-grid>
-      </scroll-view>
+      <view class="table-name">当月热门投诉</view>
+      <view wx:for="array12321312" style="width:100%" wx:key="index">
+        <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%" custom-class="customCard"
+          thumb-class="avatar" bind:tap="onGoDetail" />
+      </view>
     </view>
   </block>
-  <van-icon name="add" color="#58BD6A" bind:click="onGotoForm" size="3rem" class="add-icon" />
+  <van-icon wx:if="{{showSearch}}" name="wap-home" color="#50ADBD" bind:click="onGotoForm" size="3rem"
+    class="add-icon" bind:click="closeSearch" />
+  <van-icon wx:else name="add" color="#58BD6A" bind:click="onGotoForm" size="3rem" class="add-icon" />
 </view>

@@ -5,40 +5,46 @@ const app = getApp();
 
 function initChart(canvas, width, height, dpr) {
     const chart = echarts.init(canvas, null, {
-      width: width,
-      height: height,
-      devicePixelRatio: dpr // new
+        width: width,
+        height: height,
+        devicePixelRatio: dpr // new
     });
     canvas.setChart(chart);
-  
+
     var option = {
-      backgroundColor: "#ffffff",
-      tooltip: {
-        trigger: 'item',
-        formatter: "{a}\n{b} : {c}条"
-      },
-      calculable: true,
-      series: [
-        {
-          name: '金字塔',
-          label:false,
-          labelLine:false,
-          type: 'funnel',
-          width: '70%',
-          height: '90%',
-          left: '15%',
-          top: '5%',
-          sort: 'ascending',
-          data: [
-            { value: 60, name: '访问' },
-            { value: 50, name: '订单' },
-            { value: 30, name: '咨询' },
-          ]
+        backgroundColor: "#ffffff",
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a}\n{b} : {c}条"
         },
-      ]
+        calculable: true,
+        series: [{
+            name: '金字塔',
+            label: false,
+            labelLine: false,
+            type: 'funnel',
+            width: '70%',
+            height: '90%',
+            left: '15%',
+            top: '5%',
+            sort: 'ascending',
+            data: [{
+                    value: 60,
+                    name: '访问'
+                },
+                {
+                    value: 50,
+                    name: '订单'
+                },
+                {
+                    value: 30,
+                    name: '咨询'
+                },
+            ]
+        }, ]
     };
-  
-  
+
+
     chart.setOption(option);
     return chart;
 }
@@ -82,10 +88,10 @@ Page({
         value2: 'a',
         showSearch: false
     },
-    onGoDetail(){
+    onGoDetail() {
         console.log(233);
         wx.navigateTo({
-          url: './detail/detail',
+            url: './detail/detail',
         })
     },
     /**
@@ -157,5 +163,22 @@ Page({
         wx.navigateTo({
             url: './detail/detail',
         })
+    },
+    onSearch(event) {
+        const {
+            detail
+        } = event;
+        if (detail === '') {
+
+        } else {
+            this.setData({
+                showSearch: true
+            })
+        }
+    },
+    closeSearch(){
+      this.setData({
+        showSearch: false
+      })  
     }
 })

@@ -18,6 +18,13 @@
   z-index: 10;
 }
 
+.home-icon {
+  position: fixed;
+  right: 20rpx;
+  bottom: 130rpx;
+  z-index: 10;
+}
+
 .header {
   width: 100%;
   display: flex;
@@ -61,40 +68,50 @@
   display: inline-block;
   width: 12rpx;
   height: 12rpx;
-  margin:5rpx 0;
+  margin: 5rpx 0;
   border-radius: 50%;
   background-color: red;
   margin-right: 16rpx;
 }
+
 .blue-circle::before {
   content: ' ';
   display: inline-block;
   width: 12rpx;
   height: 12rpx;
-  margin:5rpx 0;
+  margin: 5rpx 0;
   border-radius: 50%;
   background-color: blue;
   margin-right: 16rpx;
 }
+
 .yellow-circle::before {
   content: ' ';
   display: inline-block;
   width: 12rpx;
   height: 12rpx;
-  margin:5rpx 0;
+  margin: 5rpx 0;
   border-radius: 50%;
   background-color: yellow;
   margin-right: 16rpx;
 }
 
 .bottom-item-number {
-  margin-left:28rpx ;
+  margin-left: 28rpx;
   color: rgba(0, 0, 0, .7);
   font-size: 26rpx;
 }
 
 .bottom-item-diff {
-  margin-left:28rpx ;
+  margin-left: 28rpx;
   color: rgba(0, 0, 0, .7);
   font-size: 26rpx;
+}
+
+.avatar {
+  width: 20rpx;
+}
+
+.customCard {
+  background-color: white !important;
 }
