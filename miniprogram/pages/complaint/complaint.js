@@ -62,5 +62,15 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    onGotoForm(){
+        wx.navigateTo({
+          url: './form/form',
+        })
+    },
+    onGotoDetail(){
+        wx.navigateTo({
+            url: './detail/detail',
+        })
     }
 })

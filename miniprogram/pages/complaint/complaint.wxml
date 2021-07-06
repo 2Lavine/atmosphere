@@ -1,5 +1,5 @@
 <!--miniprogram/pages/complaint/complaint.wxml-->
 <view class="container">
-  <van-button type="primary">我要投诉</van-button>
-  <van-button type="info" style="margin-top:30rpx">查询投诉</van-button>
+  <van-button type="primary" bind:click="onGotoForm">我要投诉</van-button>
+  <van-button type="info" bind:click="onGotoDetail" style="margin-top:30rpx">查询投诉</van-button>
 </view>

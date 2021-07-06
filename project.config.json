@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "miniprogram/",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -20,7 +20,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -41,7 +41,7 @@
     ],
     "minifyWXSS": true
   },
-  "appid": "wxc868a565a93d0e78",
+  "appid": "wx0db0c12ba3e1ae62",
   "projectname": "atmosphere",
   "libVersion": "2.14.1",
   "condition": {
