@@ -1,13 +1,53 @@
 <!--miniprogram/pages/complaint/complaint.wxml-->
+<view class="top-graph">
+  <ec-canvas class="top-graph1" id="mychart-grah" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+</view>
 <view class="container">
   <van-search class="search" value="{{ value }}" placeholder="请输入搜索关键词" input-align="center" bind:search="onSearch">
   </van-search>
-  <van-dropdown-menu style="width:100%" >
+  <!-- <van-dropdown-menu style="width:100%" >
     <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
     <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
-  </van-dropdown-menu>
-  <view wx:for="array12321312" style="width:100%" wx:key="index">
-    <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%" />
-  </view>
+  </van-dropdown-menu> -->
+  <block wx:if="{{showSearch}}">
+    <view wx:for="array12321312" style="width:100%" wx:key="index">
+      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%" />
+    </view>
+  </block>
+  <block wx:else>
+
+    <view class="card">
+      <view class="bottom">
+        <view class="bottom-item">
+          <view class="bottom-item-name red-circle">当月受理</view>
+          <view class="bottom-item-number"> 123</view>
+          <view class="bottom-item-diff">+46</view>
+        </view>
+        <view class="bottom-item">
+          <view class="bottom-item-name blue-circle">当月受理</view>
+          <view class="bottom-item-number"> 123</view>
+          <view class="bottom-item-diff">+46</view>
+        </view>
+        <view class="bottom-item ">
+          <view class="bottom-item-name yellow-circle">当月受理</view>
+          <view class="bottom-item-number"> 123</view>
+          <view class="bottom-item-diff">+46</view>
+        </view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="table-name">投诉明细</view>
+      <scroll-view>
+        <van-grid column-num="2" border="{{ true }}" center="{{ false }}">
+          <van-grid-item use-slot wx:for="{{8}}" wx:for-item="index" wx:key="index">
+            <view style="margin-left:12rpx">
+              <view style="font-size:30rpx;color:rgba(0,0,0,0.2);margin-bottom:5rpx"> 文本</view>
+              <view style="font-size:30rpx;color:rgba(0, 0, 0, .7)"> 23</view>
+            </view>
+          </van-grid-item>
+        </van-grid>
+      </scroll-view>
+    </view>
+  </block>
   <van-icon name="add" color="#58BD6A" bind:click="onGotoForm" size="3rem" class="add-icon" />
 </view>

@@ -1,4 +1,47 @@
 // miniprogram/pages/complaint/complaint.js
+import * as echarts from '../../ec-canvas/echarts';
+
+const app = getApp();
+
+function initChart(canvas, width, height, dpr) {
+    const chart = echarts.init(canvas, null, {
+      width: width,
+      height: height,
+      devicePixelRatio: dpr // new
+    });
+    canvas.setChart(chart);
+  
+    var option = {
+      backgroundColor: "#ffffff",
+      tooltip: {
+        trigger: 'item',
+        formatter: "{a}\n{b} : {c}条"
+      },
+      calculable: true,
+      series: [
+        {
+          name: '金字塔',
+          label:false,
+          labelLine:false,
+          type: 'funnel',
+          width: '70%',
+          height: '90%',
+          left: '15%',
+          top: '5%',
+          sort: 'ascending',
+          data: [
+            { value: 60, name: '访问' },
+            { value: 50, name: '订单' },
+            { value: 30, name: '咨询' },
+          ]
+        },
+      ]
+    };
+  
+  
+    chart.setOption(option);
+    return chart;
+}
 Page({
 
     /**
@@ -6,6 +49,9 @@ Page({
      */
     data: {
         imageURL: '../../../../pages/complaint/pic.webp',
+        ec: {
+            onInit: initChart
+        },
         option1: [{
                 text: '全部商品',
                 value: 0
@@ -34,6 +80,7 @@ Page({
         ],
         value1: 0,
         value2: 'a',
+        showSearch: false
     },
 
     /**
@@ -88,8 +135,13 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-
+    onShareAppMessage: function (res) {
+        return {
+            title: '守护大气 可以在微信小程序中使用啦！',
+            path: '/pages/index/index',
+            success: function () {},
+            fail: function () {}
+        }
     },
     onGotoForm() {
         wx.navigateTo({

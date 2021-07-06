@@ -1,8 +1,8 @@
 {
     "pages": [
+        "pages/complaint/complaint",
         "pages/information/information",
         "pages/mine/mine",
-        "pages/complaint/complaint",
         "pages/complaint/detail/detail",
         "pages/complaint/form/form",
         "pages/mine/rankingList/rankingList",
