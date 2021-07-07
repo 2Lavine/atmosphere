@@ -1,4 +1,5 @@
-//app.js
+const userLoginApi = require('./apis/userLoginApi')
+
 const pollutetype = [ //污染类别
   '黑烟柴油',
   '油烟排放',
@@ -19,15 +20,39 @@ App({
   onLaunch: function () {
     var that = this
 
-    wx.getSystemInfo({
-      success: e => {
-        
+    // 若用户已注册则保存用户信息，若未注册则保存openid在我的页进行登录注册
+    userLoginApi.TryToLogin().then((res) => { 
+      console.log(res)
+      if (res.data.status == 'failure') {
+
+        if(res.data.userid){ 
+          that.globalData.openId = res.data.userid
+        }else {
+          wx.showToast({
+            title: '获取信息错误',
+          })
+        }
+
+      } else if (res.data.status == 'success'){
+
+        let userInfo = {
+          'name': res.data.name,
+          'avatar': res.data.avatar,
+          'email': res.data.email,
+          'exp': res.data.exp,
+          'phone': res.data.phone
+        }
+        that.globalData.openId = res.data.userid,
+        that.globalData.userInfo = userInfo
+        that.globalData.isUserLogin = true
+
+      }else {
+        console.log(res)
       }
-    })
+    }, (err) => { console.log(err) })
   },
 
 
-  
   globalData: {
     authSetting: null,
     
@@ -44,6 +69,7 @@ App({
     openId: null,
     isUserLogin: false,
     userInfo: null,
+    
     userLocation: null,
     polluteType: pollutetype,
     state: state

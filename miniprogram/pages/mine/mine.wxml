@@ -2,42 +2,67 @@
 <!-- <van-button type="primary">按钮</van-button> -->
 <view class="wrapper">
   <view class="user-wrapper">
-    <view class="user-avatar">
-      <van-image round width="5rem" height="5rem" src="/static/test-image/avatar.png"/>
-    </view>
-    <view class="login-btn" wx:if="{{isUserLogin==false}}">
-      <van-button type="default"> 登 录 </van-button>
-    </view>
-    <view class="user-info" wx:if="{{isUserLogin==true}}">
-        <view class="user-basic-info">
-          <view class="nickName">王铁丸</view>
-          <view class="tel-wrapper">
-            <view class="tel" style="margin-right: 1rem">13777890956</view>
-            <van-image width="1rem" height="1rem" src="/static/img/edit.png"/>
+    <view class="user-info-box">
+      <van-image src="{{userInfo.avatar}}" custom-class="user-avatar" round use-loading-slot>
+        <van-icon slot="loading" name="user-o" size="75rpx" />
+      </van-image>
+
+      <view wx:if="{{isUserLogin}}" style="flex-grow: 1;">
+        <view class="user-baseinfo-box">
+          <text class="van-ellipsis" style="font-size:1.3rem;text-overflow:ellipsis;">{{userInfo.name}}</text>
+          <view style="display:flex;align-content:center;">
+            <text style="font-size:1rem;margin-right:10rpx;line-height:2rem;flex-shrink: 0;">{{userInfo.phone == '' ? '请填写联系方式' : userInfo.phone}}</text>
+            <van-icon name="edit" size="45rpx" bindtap="ShowPhoneModal"/>
           </view>
         </view>
-        <view class="reward-wrapper">
-          <view class="reward">
-            <van-image width="2rem" height="2rem" src="/static/img/reward.png"/>
-            <view style="margin-left: 1rem">环保萌新</view>
+        <view class="level-box">
+          <view style="display:flex;align-items: center;">
+            <image style="width:50rpx;height:50rpx;" src="/static/img/reward.png"></image>
+            <text style="margin-left:10rpx;">{{userInfo.level}}</text>
           </view>
-          <van-progress percentage="75" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+          <view style="margin-top:20rpx;">
+            <van-progress percentage="{{userInfo.expRatio}}" pivot-text="{{userInfo.expText}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)" />
+          </view>
         </view>
+
+
+        
+      </view>
+      <view wx:else style="display:flex;margin-top:20rpx;font-size:1.1rem;">
+        <text>请先授权登录</text>
+      </view>
     </view>
+
+    <van-button bindtap="UserLogin" wx:if="{{!isUserLogin}}" round type="primary" custom-class="login-btn">登录</van-button>
   </view>
+
+
   <view class="list-wrapper">
-    <view class="list"  wx:for="{{listItems}}" wx:key="index" bindtap="test" data-checkNum="{{index}}">
+    <view class="list" wx:for="{{listItems}}" wx:key="index" data-checkNum="{{index}}">
       <view class="list-left">
-        <van-image width="2rem" height="2rem" src="{{item.imgSrc}}"/>
+        <van-image width="2rem" height="2rem" src="{{item.imgSrc}}" />
         <view style="margin-left: 1rem">{{item.title}}</view>
       </view>
       <view>
-        <van-image width="2rem" height="2rem" src="/static/img/dot.png" wx:if="{{item.textNum!=0}}"/>
-        <van-image width="2rem" height="2rem" src="/static/img/next.png"/>
+        <van-image width="2rem" height="2rem" src="/static/img/dot.png" wx:if="{{item.textNum!=0}}" />
+        <van-image width="2rem" height="2rem" src="/static/img/next.png" />
       </view>
     </view>
-    
+
   </view>
 </view>
 
-      <!-- <van-image width="2rem" height="2rem" src="/static/img/myComplaint.png"/> -->
+<van-dialog use-slot show="{{isShowPhoneModal}}" title="填写联系电话"
+      bind:confirm="EditPhone" close-on-click-overlay="true"
+      show-cancel-button="true">
+  <van-cell-group>
+    <van-field
+      value="{{ phoneNum }}"
+      bind:change="PhoneInputChange"
+      placeholder="请输入联系电话"
+      border="{{ false }}"
+      type="number"
+      custom-style="margin: 20rpx;"
+    />
+  </van-cell-group>
+</van-dialog>

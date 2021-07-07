@@ -1,25 +1,60 @@
-/* miniprogram/pages/mine/mine.wxss */
 .wrapper{
   width: 100%;
   height: 100vh;
   background-color: #FEF7BB;
 }
-
 .user-wrapper{
-  margin:1em 1em 1em ;
-  padding: 0.5em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  
+  margin: 20rpx ;
+  padding: 30rpx 50rpx;
   background-color: #FAE18E;
   border-radius: 20rpx;
   border: 1.5px solid white;
 }
 
-.user-avatar{
-  width: 5em;
-  height: 5em;
-  border-radius: 50%;
+/* xtg */
+.user-info-box{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
+.user-baseinfo-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+.user-avatar{
+  margin-right: 30rpx;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+.login-btn{
+  width: 130rpx;
+}
+
+.level-box{
+  display: flex;
+  flex-direction: column;
+  margin-top: 15rpx;
+}
+
+
+
+
+
+
+
+
+
+/* xtg */
+
+
+
+
 
 .login-btn{
   right: 0.5em;
@@ -29,34 +64,10 @@
   /* background-color: blue; */
 }
 
-.user-info{
-  color: #8D672D;
-  width: 70%;
-  /* background-color: bisque; */
-  font-size: 1.2em;
-  padding:0.5em 0 ;
-  /* padding-top: 0.1em; */
-  /* display: flex; */
-  /* align-items: center; */
-}
 
-.user-basic-info{
-  display: flex;
-  justify-content: space-between;
-}
 
-.nickName{
-  /* margin-top: 15rpx; */
-  width: 35%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
-.tel-wrapper{
-  /* margin-top: 15rpx; */
-  display: flex;
-}
+
 
 .reward-wrapper{
   margin-top: 0.5em;

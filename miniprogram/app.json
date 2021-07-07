@@ -1,9 +1,9 @@
 {
     "pages": [
-        "pages/complaint/complaint",
-        "pages/complaint/detail/detail",
         "pages/information/information",
         "pages/mine/mine",
+        "pages/complaint/complaint",
+        "pages/complaint/detail/detail",
         "pages/complaint/form/form",
         "pages/mine/rankingList/rankingList",
         "pages/mine/notification/notification",
@@ -23,7 +23,8 @@
         "van-grid-item": "@vant/weapp/grid-item/index",
         "van-tag": "@vant/weapp/tag/index",
         "van-toast": "@vant/weapp/toast/index",
-        "van-dialog": "@vant/weapp/dialog/index"
+        "van-dialog": "@vant/weapp/dialog/index",
+        "van-field": "@vant/weapp/field/index"
     },
     "tabBar": {
         "color": "#bfbfbf",
