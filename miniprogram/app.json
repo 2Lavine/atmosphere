@@ -1,12 +1,13 @@
 {
     "pages": [
-        "pages/information/information",
-        "pages/mine/mine",
         "pages/complaint/complaint",
         "pages/complaint/detail/detail",
+        "pages/information/information",
+        "pages/mine/mine",
         "pages/complaint/form/form",
         "pages/mine/rankingList/rankingList",
-        "pages/mine/notification/notification"
+        "pages/mine/notification/notification",
+        "pages/mine/myComplaint/myComplaint"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",

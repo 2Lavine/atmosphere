@@ -1,12 +1,13 @@
 <view class="airinfo-box">
     <view class="general-box">
-        <image class="bg-img" src="../../static/img/bg_sunny.png"></image>
+        <image class="bg-img" src="{{bgSrc}}"></image>
         <view class="share-btn">
             <image bindtap="Share" class="share-icon" src="../../static/img/share.png" mode="widthFix"></image>
         </view>
-        <view class="location-box">
+        <view class="location-box" bindtap="SelectLocation">
             <van-icon name="location" />
-            <text style="margin-left:12rpx;">{{cityName ? cityName : '定位中...'}}</text>
+            <text style="margin:0 12rpx 0 10rpx;">{{cityName ? cityName : '定位中...'}}</text>
+            <van-icon name="arrow" />
         </view>
         <view class="aqi-box">
             <view>

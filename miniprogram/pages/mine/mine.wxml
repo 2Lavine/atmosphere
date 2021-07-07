@@ -1,2 +1,43 @@
 <!--miniprogram/pages/mine/mine.wxml-->
-<text>miniprogram/pages/mine/mine.wxml</text>
+<!-- <van-button type="primary">按钮</van-button> -->
+<view class="wrapper">
+  <view class="user-wrapper">
+    <view class="user-avatar">
+      <van-image round width="5rem" height="5rem" src="/static/test-image/avatar.png"/>
+    </view>
+    <view class="login-btn" wx:if="{{isUserLogin==false}}">
+      <van-button type="default"> 登 录 </van-button>
+    </view>
+    <view class="user-info" wx:if="{{isUserLogin==true}}">
+        <view class="user-basic-info">
+          <view class="nickName">王铁丸</view>
+          <view class="tel-wrapper">
+            <view class="tel" style="margin-right: 1rem">13777890956</view>
+            <van-image width="1rem" height="1rem" src="/static/img/edit.png"/>
+          </view>
+        </view>
+        <view class="reward-wrapper">
+          <view class="reward">
+            <van-image width="2rem" height="2rem" src="/static/img/reward.png"/>
+            <view style="margin-left: 1rem">环保萌新</view>
+          </view>
+          <van-progress percentage="75" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+        </view>
+    </view>
+  </view>
+  <view class="list-wrapper">
+    <view class="list"  wx:for="{{listItems}}" wx:key="index" bindtap="test" data-checkNum="{{index}}">
+      <view class="list-left">
+        <van-image width="2rem" height="2rem" src="{{item.imgSrc}}"/>
+        <view style="margin-left: 1rem">{{item.title}}</view>
+      </view>
+      <view>
+        <van-image width="2rem" height="2rem" src="/static/img/dot.png" wx:if="{{item.textNum!=0}}"/>
+        <van-image width="2rem" height="2rem" src="/static/img/next.png"/>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+      <!-- <van-image width="2rem" height="2rem" src="/static/img/myComplaint.png"/> -->

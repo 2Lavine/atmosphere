@@ -1,6 +1,6 @@
 const key = '024c3d3ee5db4c8eb04c1b4796dd6efa'
 
-/* 通过经纬度信息获取城市Id */
+/* 通过经纬度信息获取城市Id，参数：以英文逗号分隔的经度,纬度坐标 */
 function GetCityId(location) {
     return new Promise(function(resolve,reject){
         wx.request({

@@ -34,6 +34,7 @@ function initChart(canvas, width, height, dpr) {
 
 Page({
     data: {
+        bgSrc: '',
         cityId: null,
         cityName: null,
         airNow: null,
@@ -47,38 +48,48 @@ Page({
     onLoad (options) {
         let that = this
 
+        // 根据时间显示背景图
+        let hours = new Date().getHours()
+        if (hours >= 6 && hours <=18)
+            that.setData({bgSrc: '../../static/img/bg_daytime.png'})
+        else 
+            that.setData({bgSrc: '../../static/img/bg_night.png'})
+
+        // 获取用户位置信息
+        that.GetLocation().then( res => {
+            that.Refresh(res)
+        })
+    },
+    /* 根据经纬度信息获取城市Id，并调用GetAirInfo查询大气信息 */
+    Refresh(location){
+        let that = this
         Toast.loading({
             message: '加载中...',
             forbidClick: true,
         })
-        // 获取用户位置信息，用于查询天气信息与生活指数
-        that.GetLocation().then( res => {
+        weatherApi.GetCityId(location).then( res => {
             console.log(res)
-            weatherApi.GetCityId(res).then( res => {
-                console.log(res)
-                if (res.data.code == 200) {
-                    let cityId = res.data.location[0].id
-                    let cityName = res.data.location[0].adm2 + ' ' + res.data.location[0].name
-                    
-                    that.GetAirInfo(cityId)
+            if (res.data.code == 200) {
+                let cityId = res.data.location[0].id
+                let cityName = res.data.location[0].adm2 + ' ' + res.data.location[0].name
+                
+                that.GetAirInfo(cityId)
 
-                    that.setData({
-                        cityId: cityId,
-                        cityName: cityName
-                    })
-                    app.globalData.weatherInfo.cityId = cityId
-                    app.globalData.weatherInfo.cityName = cityName
+                that.setData({
+                    cityId: cityId,
+                    cityName: cityName
+                })
+                app.globalData.weatherInfo.cityId = cityId
+                app.globalData.weatherInfo.cityName = cityName
 
-                    Toast.clear()
-                } else {
-                    Toast.clear()
-                    wx.showToast({
-                        title: '服务出错，请稍后重试',
-                    })
-                }
-            })
+                Toast.clear()
+            } else {
+                Toast.clear()
+                wx.showToast({
+                    title: '服务出错，请稍后重试',
+                })
+            }
         })
-        
     },
     /* 根据城市id获取大气信息并储存 */
     GetAirInfo(cityId) {
@@ -227,17 +238,16 @@ Page({
             showCancel: false,
             content: that.data.lifeIndices[type].text
         })
-
-        // 弹窗组件会被chart覆盖
-
-        /* Dialog.alert({
-            zIndex: 1000000000,
-            customStyle:'',
-            closeOnClickOverlay: true,
-            showConfirmButton: false,
-            message: that.data.lifeIndices[type].text,
-        }).then(() => {
-        }); */
+    },
+    /* 手动选择位置 */
+    SelectLocation() {
+        let that = this
+        wx.chooseLocation({
+            success: res => {
+                let location = res.longitude + ',' + res.latitude
+                that.Refresh(location)
+            }
+        })
     },
     /* 分享按钮点击事件 */
     Share(){

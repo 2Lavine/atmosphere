@@ -1,1 +1,98 @@
 /* miniprogram/pages/mine/mine.wxss */
+.wrapper{
+  width: 100%;
+  height: 100vh;
+  background-color: #FEF7BB;
+}
+
+.user-wrapper{
+  margin:1em 1em 1em ;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  background-color: #FAE18E;
+  border-radius: 20rpx;
+  border: 1.5px solid white;
+}
+
+.user-avatar{
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+}
+
+.login-btn{
+  right: 0.5em;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  /* background-color: blue; */
+}
+
+.user-info{
+  color: #8D672D;
+  width: 70%;
+  /* background-color: bisque; */
+  font-size: 1.2em;
+  padding:0.5em 0 ;
+  /* padding-top: 0.1em; */
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.user-basic-info{
+  display: flex;
+  justify-content: space-between;
+}
+
+.nickName{
+  /* margin-top: 15rpx; */
+  width: 35%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tel-wrapper{
+  /* margin-top: 15rpx; */
+  display: flex;
+}
+
+.reward-wrapper{
+  margin-top: 0.5em;
+  /* display: flex; */
+}
+
+.reward{
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.list-wrapper{
+  margin:1em 1em 1em ;
+  display: flex;
+  flex-direction: column;
+}
+
+.list{
+  margin-bottom: 0.5em;
+  padding: 1rem;
+  display: flex;
+  background-color: #FAE18E;
+  align-items: center;
+  font-size: 1.3em;
+  color: #8D672D;
+  border-radius: 20rpx;
+  border: 1.5px solid white;
+  justify-content: space-between;
+}
+
+.list-left{
+  display: flex;
+  align-items: center;
+}
+
+/* .list{
+  background-color: #FAE18E;
+} */
