@@ -1,1 +1,46 @@
-<text>miniprogram/pages/information/information.wxml</text>
+<view class="airinfo-box">
+    <view class="general-box">
+        <image class="bg-img" src="../../static/img/bg_sunny.png"></image>
+        <view class="share-btn">
+            <image bindtap="Share" class="share-icon" src="../../static/img/share.png" mode="widthFix"></image>
+        </view>
+        <view class="location-box">
+            <van-icon name="location" />
+            <text style="margin-left:12rpx;">{{cityName ? cityName : '定位中...'}}</text>
+        </view>
+        <view class="aqi-box">
+            <view>
+                <text style="font-size:4.5rem;">{{airNow ? airNow.aqi : '--'}}</text>
+                <van-tag wx:if="{{airNow}}" size="large" type="{{airNow.tagType}}" style="margin-left:15rpx;"
+                >{{airNow.category}}</van-tag>
+            </view>
+            <text style="margin-top:6rpx;color:#ffffffd4;font-size:1.3rem;">空气指数</text>
+        </view>
+        <view class="pri-pollution-box">
+            <text>主要污染物：{{airNow.primary == 'NA' ? '无' : airNow.primary}}</text>
+        </view>
+    </view>
+    <view class="detail-box">
+        <van-grid column-num="3">
+            <van-grid-item use-slot wx:for="{{airNow.detail}}" wx:key="index">
+                <text style="font-size:1.1rem;color:#131313">{{item.value}}</text>
+                <text style="font-size:1rem;color:#a0a0a0;margin-top:10rpx;">{{item.name}}</text>
+            </van-grid-item>
+        </van-grid>
+    </view>
+    <view class="prediction-box">
+        <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+    </view>
+    <view class="lifeindices-box">
+        <van-grid column-num="4">
+            <van-grid-item use-slot wx:for="{{lifeIndices}}" wx:key="index" bindtap="LifeIndiceTap" data-type="{{item.type}}">
+                <image src="{{item.iconSrc}}" style="width:70rpx;" mode="widthFix"></image>
+                <text style="font-size:0.9rem;color:#131313;margin-top:15rpx;">{{item.category}}</text>
+                <text style="font-size:0.9rem;color:#a0a0a0;margin-top:10rpx;">{{item.name}}</text>
+            </van-grid-item>
+        </van-grid>
+    </view>
+</view>
+<view class="envinfo-box"></view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog"/>
