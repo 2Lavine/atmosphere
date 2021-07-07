@@ -1,1 +1,117 @@
 /* miniprogram/pages/complaint/complaint.wxss */
+.container {
+  height: 100vh;
+  display: flex;
+  /* display: releati; */
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.01)
+}
+
+.search {
+  width: 100%;
+}
+
+.add-icon {
+  position: fixed;
+  right: 20rpx;
+  bottom: 30rpx;
+  z-index: 10;
+}
+
+.home-icon {
+  position: fixed;
+  right: 20rpx;
+  bottom: 130rpx;
+  z-index: 10;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  height: 208rpx;
+}
+
+.card {
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+  width: 700rpx;
+  height: 540rpx;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-graph {
+  height: 400rpx;
+  width: 700rpx;
+}
+
+.bottom {
+  display: flex;
+  height: 120rpx;
+  justify-content: space-around;
+  padding-bottom: 20rpx;
+}
+
+.table-name {
+  margin: 25rpx;
+  color: rgba(0, 0, 0, .7)
+}
+
+.bottom-item-name {
+  color: rgba(0, 0, 0, .3);
+  font-size: 28rpx;
+}
+
+.red-circle::before {
+  content: ' ';
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  margin: 5rpx 0;
+  border-radius: 50%;
+  background-color: red;
+  margin-right: 16rpx;
+}
+
+.blue-circle::before {
+  content: ' ';
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  margin: 5rpx 0;
+  border-radius: 50%;
+  background-color: blue;
+  margin-right: 16rpx;
+}
+
+.yellow-circle::before {
+  content: ' ';
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  margin: 5rpx 0;
+  border-radius: 50%;
+  background-color: yellow;
+  margin-right: 16rpx;
+}
+
+.bottom-item-number {
+  margin-left: 28rpx;
+  color: rgba(0, 0, 0, .7);
+  font-size: 26rpx;
+}
+
+.bottom-item-diff {
+  margin-left: 28rpx;
+  color: rgba(0, 0, 0, .7);
+  font-size: 26rpx;
+}
+
+.avatar {
+  width: 20rpx;
+}
+
+.customCard {
+  background-color: white !important;
+}

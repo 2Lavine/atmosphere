@@ -1,2 +1,50 @@
 <!--miniprogram/pages/complaint/complaint.wxml-->
-<text>miniprogram/pages/complaint/complaint.wxml</text>
+<view class="container">
+  <van-search class="search" value="{{ value }}" placeholder="请输入搜索关键词" input-align="center" bind:search="onSearch">
+  </van-search>
+  <!-- <van-dropdown-menu style="width:100%" >
+    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+  </van-dropdown-menu> -->
+  <block wx:if="{{showSearch}}">
+    <view wx:for="array12321312" style="width:100%" wx:key="index">
+      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%"
+        bind:tap="onGoDetail" />
+    </view>
+  </block>
+  <block wx:else>
+
+    <view class="card top-card">
+      <view class="top-graph">
+        <ec-canvas id="mychart-grah" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+      </view>
+      <view class="bottom">
+        <view class="bottom-item">
+          <view class="bottom-item-name red-circle">当月受理</view>
+          <view class="bottom-item-number"> 123</view>
+          <view class="bottom-item-diff">+46</view>
+        </view>
+        <view class="bottom-item">
+          <view class="bottom-item-name blue-circle">当月受理</view>
+          <view class="bottom-item-number"> 123</view>
+          <view class="bottom-item-diff">+46</view>
+        </view>
+        <view class="bottom-item ">
+          <view class="bottom-item-name yellow-circle">当月受理</view>
+          <view class="bottom-item-number"> 123</view>
+          <view class="bottom-item-diff">+46</view>
+        </view>
+      </view>
+    </view>
+    <view class="card">
+      <view class="table-name">当月热门投诉</view>
+      <view wx:for="array12321312" style="width:100%" wx:key="index">
+        <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%" custom-class="customCard"
+          thumb-class="avatar" bind:tap="onGoDetail" />
+      </view>
+    </view>
+  </block>
+  <van-icon wx:if="{{showSearch}}" name="wap-home" color="#50ADBD" bind:click="onGotoForm" size="3rem"
+    class="add-icon" bind:click="closeSearch" />
+  <van-icon wx:else name="add" color="#58BD6A" bind:click="onGotoForm" size="3rem" class="add-icon" />
+</view>

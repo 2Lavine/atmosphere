@@ -1,1 +1,50 @@
 /* miniprogram/pages/complaint/detail/detail.wxss */
+.card {
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+  width: 700rpx;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 0;
+}
+
+.container {
+  /* background-color: white; */
+  height: 100vh;
+}
+.icon-group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.like {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  color: pink
+}
+
+.thumb-class {
+  width: 48rpx;
+  height: 48rpx;
+}
+.avatar {
+  width: 48rpx !important;
+  height: 48rpx !important;
+}
+.titelClass{
+  font-weight: bolder;
+}
+.descClass{
+  font-weight: bolder;
+}
+.van-card__thumb{
+  width: 48rpx !important;
+}
+.customCard{
+  background-color: white !important;
+}

@@ -1,2 +1,43 @@
 <!--miniprogram/pages/complaint/detail/detail.wxml-->
-<text>miniprogram/pages/complaint/detail/detail.wxml</text>
+<view class="container">
+  <van-steps steps="{{ steps }}" active="{{ active }}" style="width: 700rpx" />
+  <view class="card">
+    <van-cell-group border="{{ false }}">
+      <van-cell title="污染类别" value="{{categoryText}}" border="{{false}}" />
+      <van-cell title="地址信息" label="污染发生所在地" value="{{mapMessage}}" border="{{false}}" />
+      <van-cell center title="图片" border="{{false}}">
+        <block wx:if="{{tempFilePaths}}">
+          <image src="{{tempFilePaths}}" style="height:200prx;width:100%" mode="aspectFit" />
+        </block>
+      </van-cell>
+      <van-cell center input-align="right" title="具体描述" value="{{complaintDescription}}" border="{{false}}" />
+      <van-cell center input-align="right" title="投诉单位" value="{{unit}}" border="{{false}}" />
+      <van-cell center input-align="right" title="留言" value="{{otherMessage}}" border="{{false}}" />
+      <view class="icon-group">
+        <view class="like" style="background:white">
+          <van-icon name="{{likeName}}" color="pink" size='3rem' bind:click="likeHandler" border="{{ false }}" />
+          {{likeNumber}}
+        </view>
+        <view class="like" style="background:white">
+          <van-icon name="{{collectName}}" color="pink" size='3rem' bind:click="collectHandler" border="{{ false }}" />
+          收藏
+        </view>
+      </view>
+    </van-cell-group>
+  </view>
+  <van-cell-group style="margin-top:40rpx;height:200rpx;width:700rpx">
+    <van-field right-icon="comment-o" bind:click-icon="commentHandler" custom-style="background:rgba(0,0,0,.035)"
+      value="{{ value }}" placeholder="留下你的评论" border="{{ false }}" />
+  </van-cell-group>
+  <view class="card">
+    <view wx:for="array12321312" style="width:100%" wx:key="index">
+      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" style="width:100%" custom-class="customCard"
+        thumb-class="avatar" desc-class="descClass" thumb-mode="center" thumb="{{imageURL}}">
+        <view slot="footer">
+          <van-icon name="good-job-o" size='16' />
+          {{commentlikeNumber}}
+        </view>
+      </van-card>
+    </view>
+  </view>
+</view>

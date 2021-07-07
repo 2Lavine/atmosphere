@@ -1,2 +1,42 @@
 <!--miniprogram/pages/complaint/form/form.wxml-->
-<text>miniprogram/pages/complaint/form/form.wxml</text>
+<view class="container">
+  <van-cell-group class="cell-group" style="margin-bottom:60rpx">
+    <van-cell title="快速选择污染类别" value="{{quickCategoryText}}" bind:click="showQuickTypePopup" required
+      border="{{false}}" />
+  </van-cell-group>
+  <van-cell-group class="cell-group">
+    <van-cell title="污染类别" value="{{categoryText}}" bind:click="showPopup" required border="{{false}}" />
+    <van-cell title="地址信息" label="污染发生所在地" value="{{mapMessage}}" bind:click="getLocationName" required
+      border="{{false}}" />
+    <van-cell center title="图片" bind:click="getPhoto" required border="{{false}}">
+      <block wx:if="{{tempFilePaths}}">
+        <image src="{{tempFilePaths}}" style="height:200prx;width:100%" />
+      </block>
+      <block wx:else>
+        点击拍照
+      </block>
+    </van-cell>
+    <van-field center input-align="right" label="具体描述" placeholder="{{complaintPlaceHolderDescription}}"
+      value="{{complaintDescription}}" model:value="{{  description }}" required border="{{false}}"
+      placeholder-style="text-align: right" />
+    <van-field center input-align="right" label="投诉单位" model:value="{{ unit }}" placeholder="选填"
+      placeholder-style="text-align: right" border="{{false}}" />
+    <van-field input-align="right" value="{{ message }}" label="留言" type="textarea" placeholder="选填"
+      autosize="{{ { maxHeight: 200, minHeight: 100 } }}" />
+  </van-cell-group>
+  <van-popup round show="{{ show }}" bind:close="onClose" custom-style="height: 40%;width:100%">
+    <van-picker columns="{{ columns }}" bind:change="onChange" class="picker" />
+  </van-popup>
+  <van-popup round show="{{ quickTypeShow }}" bind:close="onQuickTypeClose" custom-style="height: 40%;width:100%">
+    <van-picker columns="{{ quickColumns }}" bind:change="onQuickSelectChange" class="picker" />
+  </van-popup>
+  <van-popup round show="{{ QRCodeShow }}" bind:close="onQRCodeClose">
+    <image src="{{tempFilePaths}}" mode="aspectFit" />
+  </van-popup>
+  <van-dialog id="van-dialog" />
+  <view style="margin-top:60rpx;width:60vw">
+    <van-button type="primary" size="large" bind:click="submit">提交</van-button>
+  </view>
+  <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect"
+    bind:close="onShareShowClose" />
+</view>
