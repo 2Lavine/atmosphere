@@ -1,1 +1,26 @@
 /* miniprogram/pages/mine/myComplaint/myComplaint.wxss */
+.complaint-wrapper{
+  width: 100%;
+  height: 100vh;
+  background-color: #f6f6f6;
+}
+
+.back-icon{
+  position: absolute;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+}
+
+.head-wrapper {
+  margin: 0.5em 2em;
+  /* background-color: burlywood; */
+  display: flex;
+  justify-content: center;
+  /* color: #8D672D; */
+  font-size: 1.5em;
+}
+
+
+.list-item{
+  margin-bottom: 0.5em;
+}

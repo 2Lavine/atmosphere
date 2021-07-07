@@ -1,1 +1,109 @@
-/* miniprogram/pages/mine/mine.wxss */
+.wrapper{
+  width: 100%;
+  height: 100vh;
+  background-color: #FEF7BB;
+}
+.user-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  margin: 20rpx ;
+  padding: 30rpx 50rpx;
+  background-color: #FAE18E;
+  border-radius: 20rpx;
+  border: 1.5px solid white;
+}
+
+/* xtg */
+.user-info-box{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.user-baseinfo-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+.user-avatar{
+  margin-right: 30rpx;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+.login-btn{
+  width: 130rpx;
+}
+
+.level-box{
+  display: flex;
+  flex-direction: column;
+  margin-top: 15rpx;
+}
+
+
+
+
+
+
+
+
+
+/* xtg */
+
+
+
+
+
+.login-btn{
+  right: 0.5em;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  /* background-color: blue; */
+}
+
+
+
+
+
+
+.reward-wrapper{
+  margin-top: 0.5em;
+  /* display: flex; */
+}
+
+.reward{
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.list-wrapper{
+  margin:1em 1em 1em ;
+  display: flex;
+  flex-direction: column;
+}
+
+.list{
+  margin-bottom: 0.5em;
+  padding: 1rem;
+  display: flex;
+  background-color: #FAE18E;
+  align-items: center;
+  font-size: 1.3em;
+  color: #8D672D;
+  border-radius: 20rpx;
+  border: 1.5px solid white;
+  justify-content: space-between;
+}
+
+.list-left{
+  display: flex;
+  align-items: center;
+}
+
+/* .list{
+  background-color: #FAE18E;
+} */

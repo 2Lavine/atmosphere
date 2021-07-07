@@ -1,66 +1,116 @@
-// miniprogram/pages/mine/mine.js
+const userLoginApi = require('../../apis/userLoginApi')
+
+const app = getApp()
+
+const levelDict = {
+    '200': '环保萌新',
+    '500': '环保志士',
+    '1000': '环保卫士',
+    '2000': '环保督察官',
+    '-1': '环保大使'
+}
+
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
-
+        userInfo: null,
+        isUserLogin: false,
+        listItems: [
+            {"title": '排行榜', "imgSrc": '/static/img/ranking.png', textNum: 0},
+            {"title": '我的投诉', "imgSrc": '/static/img/myComplaint.png', textNum: 0},
+            {"title": '通知', "imgSrc": '/static/img/notice.png', textNum: 0},
+            {"title": '勋章墙', "imgSrc": '/static/img/display.png', textNum: 0}
+        ],
+        isShowPhoneModal: false,
+        phoneNum: ''
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
+        let that = this
+        that.Refresh()
+    },
+    /* 刷新用户信息 */
+    Refresh(){
+        let that = this
+        
+        let userInfo = app.globalData.userInfo
+        let isUserLogin = app.globalData.isUserLogin
+        if (userInfo != null) {
+            let levelMaxExp = that.GetLevelMaxExp(userInfo.exp)
+            if (levelMaxExp == -1) {
+                userInfo['expRatio'] = 100
+                userInfo['expText'] = userInfo.exp
+            } else{
+                userInfo['expRatio'] = Math.floor(userInfo.exp / levelMaxExp * 100)
+                userInfo['expText'] = userInfo.exp + '/' + levelMaxExp
+            }
+            userInfo['level'] = levelDict[levelMaxExp]
+        }
+        that.setData({ 
+            userInfo: userInfo,
+            isUserLogin: isUserLogin
+        })
 
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    /* 计算用户当前等级最大的经验值 */
+    GetLevelMaxExp(exp){
+        let tempArr = Object.keys(levelDict)
+        for (let i = 0; i < tempArr.length; i++) {
+            if (exp <= tempArr[i]) {
+                return tempArr[i]
+            }
+        }
+        return -1
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
+    /* 用户登录按钮点击事件 */
+    UserLogin(){
+        let that = this
+        wx.getUserProfile({
+            desc: '我们需要获取您头像和昵称的权限',
+            success(res) {
+                let userInfo = {
+                    avatar: res.userInfo.avatarUrl,
+                    name: res.userInfo.nickName,
+                    exp: 0,
+                    phone: ''
+                }
+                that.setData({
+                    userInfo: userInfo,
+                    isUserLogin: true
+                })
+                app.globalData.userInfo = userInfo
+                that.Refresh()
+                
+                let tempUserInfo = {
+                    avatar: res.userInfo.avatarUrl,
+                    name: res.userInfo.nickName
+                }
+                console.log(app.globalData.openId)
+                userLoginApi.Register(app.globalData.openId, tempUserInfo).then(res => {
+                    console.log(res)
+                    wx.showToast({
+                        title: '登陆成功',
+                    })
+                }, err => {
+                    wx.showToast({
+                      title: '登陆失败...',
+                    })
+                })
+            },
+            fail(err) { console.log(err) }
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
+    /* 修改联系方式按钮点击事件 */
+    ShowPhoneModal(){
+        this.setData({ 
+            isShowPhoneModal: true,
+            phoneNum: ''
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
+    PhoneInputChange(e){
+        this.setData({phoneNum: e.detail})
     },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
+    EditPhone(){
+        let that = this
+        console.log(that.data.phoneNum)
+        //////待改！！
     }
 })
