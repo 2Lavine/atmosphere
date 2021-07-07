@@ -1,2 +1,31 @@
 <!--miniprogram/pages/mine/rankingList/rankingList.wxml-->
-<text>miniprogram/pages/mine/rankingList/rankingList.wxml</text>
+<!-- <view class="rank-wrapper"> -->
+<scroll-view scroll-y="true" class="rank-list-wrapper" style="height:{{scroll_y}}rpx">
+  <view class="rank-list">
+    <view>
+      <van-image round width="3rem" height="3rem" src="/static/img/mine.png"/>
+    </view>
+    <view class="user-info-wrapper">
+      <view>xxx</view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="my-rank-wrapper">
+  <view class="my-avatar">
+    <van-image round width="5rem" height="5rem" src="/static/test-image/avatar.png"/>
+  </view>
+  <view class="my-info-wrapper">
+    <view class="info-top">
+      <view class="nick-name">王铁丸</view>
+      <view class="rank-num">5000+</view>
+    </view>
+    <view class="info-bottom">
+      <view class="reward">
+        <van-image width="2rem" height="2rem" src="/static/img/reward.png"/>
+        <view style="margin-left: 1rem">环保萌新</view>
+      </view>
+      <van-progress percentage="75" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+    </view>
+  </view>
+</view>

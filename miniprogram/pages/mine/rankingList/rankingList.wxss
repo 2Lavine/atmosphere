@@ -1,1 +1,50 @@
 /* miniprogram/pages/mine/rankingList/rankingList.wxss */
+.rank-list-wrapper{
+  margin-top: 0.5em;
+  background-color: #FEF7BB;
+}
+
+.rank-list{
+  margin: 0.5em;
+  padding: 0.3em 0.5em;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.my-rank-wrapper{
+  position: absolute;
+  bottom: 0;
+  width: 100vh;
+  height: 6em;
+  /* background-color: burlywood; */
+  border-top:0.1rpx solid #b5bad0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5em;
+}
+
+.my-avatar{
+  /* background-color: cadetblue; */
+  margin-right: 0.5em;
+}
+
+.my-info-wrapper{
+  /* background-color: coral; */
+  font-size: 1.2em;
+  width: 14em;
+}
+
+.info-top{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+}
+
+.reward{
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
