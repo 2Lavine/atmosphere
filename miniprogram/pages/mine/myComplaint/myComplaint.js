@@ -7,6 +7,7 @@ const state = [ // 投诉状态
   ]
 
 var app = getApp()
+const mineApi = require('../../../apis/mineApi')
 
 Page({
     data: {
@@ -19,33 +20,35 @@ Page({
         ],
         activeName: null,
         steps: [
-            {
-              desc: state[0],
-            },
-            {
-              desc: state[1],
-            },
-            {
-              desc: state[2],
-            },
-            {
-              desc: state[3],
-            },
-          ],
+          {desc: state[0],},
+          {desc: state[1],},
+          {desc: state[2],},
+          {desc: state[3],}
+        ],
     },
+    
     onLoad: function (options) {
        this.getDate()
+       this.getMyComplaintList()
     },
-    getDate() {
-        this.setData({
-            polluteType: app.globalData.polluteType,
-            state: app.globalData.state
-        })
-    },
-    onChange(event) {
-        this.setData({
-          activeName: event.detail,
-        });
 
-      },
+    getMyComplaintList(){
+      mineApi.GetMineComplaint('100023').then(res => {
+        console.log(res.data)
+      })
+    },
+
+    getDate() {
+      this.setData({
+        polluteType: app.globalData.polluteType,
+        state: app.globalData.state
+      })
+    },
+
+    onChange(event) {
+      console.log(event)
+      this.setData({
+        activeName: event.detail,
+      });
+    },
 })

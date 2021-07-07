@@ -1,66 +1,69 @@
 // miniprogram/pages/mine/notification/notification.js
+import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
+const mineApi = require('../../../apis/mineApi')
+    
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
-
+        noticeList: [
+          {
+            'title': '投诉反馈',
+            'time': '2020-01-01',
+            'content': '你的投诉已完成'
+          },
+          {
+            'title': '投诉反馈',
+            'time': '2020-01-02',
+            'content': '你的投诉已受理'
+          },
+          {
+            'title': '投诉反馈',
+            'time': '2020-01-03',
+            'content': '你的投诉已成功提交'
+          },
+          {
+            'title': '投诉反馈',
+            'time': '2020-01-04',
+            'content': '你的投诉已完成'
+          },
+        ]
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
-
+      this.getMyNotification()
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    getMyNotification(){
+      mineApi.GetMineNotification('100023').then(res => {
+        console.log(res.data)
+      })
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
+    onClose(event){
+      const { position, instance } = event.detail;
+      const index = event.currentTarget.dataset.index
+      switch (position) {
+        case 'cell':
+          instance.close();
+          break;
+        case 'right':
+          let noticeList = this.data.noticeList
+          noticeList.splice(index, 1)
+          this.setData({
+            noticeList: noticeList
+          })
+          instance.close()
+          break;
+      }
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
+    showMessage(event){
+      // console.log(event.currentTarget.dataset.index)
+      const index = event.currentTarget.dataset.index
+      let noticeList = this.data.noticeList
+      Dialog.alert({
+        title: noticeList[index].title,
+        message: noticeList[index].content
+      }).then(() => {
+        //close
+      })
     },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
 })

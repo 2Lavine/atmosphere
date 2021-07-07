@@ -15,6 +15,14 @@ const state = [ // 投诉状态
   '整改完成'
 ]
 
+const rewardTitle = [
+  '环保萌新',
+  '环保志士',
+  '环保达人',
+  '环保督察官',
+  '环保大使',
+]
+
 App({
   onLaunch: function () {
     var that = this
@@ -35,6 +43,7 @@ App({
     userInfo: null,
     userLocation: null,
     polluteType: pollutetype,
-    state: state
+    state: state,
+    rewardTitle: rewardTitle
   }
 })

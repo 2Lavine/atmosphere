@@ -7,7 +7,7 @@
   <view wx:if="{{myComplaints.length==0}}"><van-empty description="您还没有发起投诉~~~" /></view>
   <view wx:else class="list-wrapper">
     <van-collapse accordion value="{{activeName}}" bind:change="onChange">
-      <view wx:for="{{myComplaints}}" data-index="index">
+      <view wx:for="{{myComplaints}}" wx:key="index" data-index="index">
         <view class="list-item">
           <van-collapse-item title="{{polluteType[item.type]}}" value="{{item.time}}" name="{{index + 1}}">
             <van-steps steps="{{steps}}" active="{{item.state}}" />
