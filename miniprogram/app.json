@@ -24,22 +24,23 @@
         "van-tag": "@vant/weapp/tag/index",
         "van-toast": "@vant/weapp/toast/index",
         "van-dialog": "@vant/weapp/dialog/index",
-        "van-field": "@vant/weapp/field/index"
+        "van-field": "@vant/weapp/field/index",
+        "van-transition": "@vant/weapp/transition/index"
     },
     "tabBar": {
-        "color": "#bfbfbf",
-        "selectedColor": "#3387b5",
+        "color": "#8a8a8a",
+        "selectedColor": "#66b1dd",
         "borderStyle": "black",
         "list": [
             {
-                "selectedIconPath": "/static/img/project_selected.png",
-                "iconPath": "/static/img/project.png",
+                "selectedIconPath": "/static/img/weather_selected.png",
+                "iconPath": "/static/img/weather.png",
                 "pagePath": "pages/information/information",
                 "text": "大气"
             },
             {
-                "selectedIconPath": "/static/img/project_selected.png",
-                "iconPath": "/static/img/project.png",
+                "selectedIconPath": "/static/img/complaint_selected.png",
+                "iconPath": "/static/img/complaint.png",
                 "pagePath": "pages/complaint/complaint",
                 "text": "投诉"
             },

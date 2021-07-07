@@ -42,7 +42,7 @@ Page({
             onInit: initChart
         },
         lifeIndices: {}, // 生活指数（1：运动指数；5：紫外线指数；6：旅游指数；空气污染扩散条件指数：10）
-        
+        isShowUpdateTime: false,
     },
 
     onLoad (options) {
@@ -97,6 +97,7 @@ Page({
         // 获取今日大气信息
         weatherApi.GetNowAirInfo(cityId).then(res => {
             if (res.data.code == 200) {
+                console.log(res.data)
                 let airNow = res.data.now
                 let detail = []
 
@@ -110,11 +111,17 @@ Page({
                 airNow['detail'] = detail
 
                 airNow.tagType = tagTypeDict[airNow.level]
-
+                airNow.updateTime = airNow.pubTime.split('T')[0]
+                
                 app.globalData.weatherInfo.airNow = airNow
                 that.setData({
-                    airNow: airNow
-                })                
+                    airNow: airNow,
+                    isShowUpdateTime: true
+                })     
+
+                setTimeout(()=> {
+                    that.setData({ isShowUpdateTime: false })   
+                }, 3000)           
             } else {
                 wx.showToast({
                     title: '服务出错，请稍后重试',
