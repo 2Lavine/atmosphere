@@ -1,12 +1,25 @@
 <!--miniprogram/pages/mine/rankingList/rankingList.wxml-->
 <!-- <view class="rank-wrapper"> -->
 <scroll-view scroll-y="true" class="rank-list-wrapper" style="height:{{scroll_y}}rpx">
-  <view class="rank-list">
+  <view class="rank-list" wx:for="{{exps}}" wx:key="index">
     <view>
-      <van-image round width="3rem" height="3rem" src="/static/img/mine.png"/>
+      <van-image round width="3rem" height="3rem" src="{{item.avatar}}"/>
     </view>
     <view class="user-info-wrapper">
-      <view>xxx</view>
+      <view class="info-top">
+        <view>{{item.name}}</view>
+        <view class="like-rank">
+          <view style="margin-right:1em">{{item.order}}</view>
+          <van-image round width="1.5rem" height="1.5rem" src="/static/img/like_select.png"/>
+        </view>
+      </view>
+      <view class="info-bottom" style="font-size: xsmall">
+        <view class="reward">
+          <van-image width="1.5rem" height="1.5rem" src="/static/img/reward.png"/>
+            <view style="margin-left: 1rem">环保萌新</view>
+        </view>
+        <van-progress percentage="{{item.pencent}}" pivot-text="{{item.exp}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+      </view>
     </view>
   </view>
 </scroll-view>
@@ -25,7 +38,7 @@
         <van-image width="2rem" height="2rem" src="/static/img/reward.png"/>
         <view style="margin-left: 1rem">环保萌新</view>
       </view>
-      <van-progress percentage="75" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+      <van-progress percentage="75" pivot-text="1758" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
     </view>
   </view>
 </view>

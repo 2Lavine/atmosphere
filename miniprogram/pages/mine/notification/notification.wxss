@@ -1,1 +1,6 @@
 /* miniprogram/pages/mine/notification/notification.wxss */
+.test{
+  width: 100vh;
+  height: 3rem;
+  background-color: red;
+}

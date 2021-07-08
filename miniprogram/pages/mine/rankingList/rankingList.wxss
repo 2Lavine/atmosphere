@@ -1,7 +1,8 @@
 /* miniprogram/pages/mine/rankingList/rankingList.wxss */
 .rank-list-wrapper{
   margin-top: 0.5em;
-  background-color: #FEF7BB;
+  /* background-color: #FEF7BB; */
+  
 }
 
 .rank-list{
@@ -9,21 +10,34 @@
   padding: 0.3em 0.5em;
   background-color: white;
   display: flex;
+  font-size: 1em;
   align-items: center;
-  font-size: 1.2em;
+  border-radius: 5%;
+}
+
+.user-info-wrapper{
+  flex: 1;
+  margin-left: 0.5em;
+  /* background-color: #b5bad0; */
 }
 
 .my-rank-wrapper{
   position: absolute;
   bottom: 0;
-  width: 100vh;
+  left: 0;
+  right: 0;
   height: 6em;
   /* background-color: burlywood; */
   border-top:0.1rpx solid #b5bad0;
-  background-color: white;
+  background-color: #f3f3f3;
   display: flex;
   align-items: center;
   padding: 0 0.5em;
+}
+
+.like-rank{
+  display: flex;
+  align-items: center;
 }
 
 .my-avatar{
@@ -34,7 +48,7 @@
 .my-info-wrapper{
   /* background-color: coral; */
   font-size: 1.2em;
-  width: 14em;
+  flex: 1;
 }
 
 .info-top{
@@ -47,4 +61,5 @@
   display: flex;
   align-items: center;
   font-size: 1rem;
+  margin-bottom: 0.5em;
 }

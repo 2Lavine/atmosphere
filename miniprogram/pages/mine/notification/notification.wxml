@@ -1,2 +1,29 @@
 <!--miniprogram/pages/mine/notification/notification.wxml-->
-<text>miniprogram/pages/mine/notification/notification.wxml</text>
+<view wx:if="{{noticeList.length==0}}"><van-empty description="您没有通知哦~~~" /></view>
+<view wx:for="{{noticeList}}" wx:key="index" bindtap="console.log('123')">
+  <van-swipe-cell id="swipe-cell" right-width="{{65}}" async-close bind:close="onClose" data-index="{{index}}">
+  <van-cell-group data-index="{{index}}" bind:tap="showMessage">
+    <van-cell title="{{item.title}}" value="{{item.time}}"/>
+  </van-cell-group>
+  <view slot="right">
+    <van-button type="warning">删除</van-button>
+  </view>
+  </van-swipe-cell>
+</view>
+
+<!-- <view class="test" bindtap="test"></view> -->
+
+<!-- <van-dialog 
+  title="投诉"
+  message="您的投诉已受理"
+  show="{{show}}"
+  bind:confirm="onComfirm">
+</van-dialog> -->
+
+<van-dialog id="van-dialog" />
+
+<!-- <van-dialog
+  message=""
+  show="{{ show }}"
+  bind:close="onClose">
+</van-dialog> -->
