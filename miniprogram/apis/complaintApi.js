@@ -4,7 +4,7 @@
 function getMonthData() {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: "http://49.235.115.35:18080/Front/DataCount",
+      url: "https://napoleonxzy.cn/Front/DataCount",
       method: 'GET',
       success(res) {
         resolve(res)
@@ -20,10 +20,10 @@ function getMonthData() {
  * 获取当月热门评论
  */
 
-function getMonthHotComment() {
+function getMonthHotComplaint() {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'http://49.235.115.35:18080/Front/PopComplaints' ,
+      url: 'https://napoleonxzy.cn/Front/PopComplaints',
       method: 'GET',
       success(res) {
         resolve(res)
@@ -43,7 +43,7 @@ function getMonthHotComment() {
 function getSearchResult(keyword) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'http://49.235.115.35:18080/Front/NoticesNum/' + userid,
+      url: 'https://napoleonxzy.cn/Front/NoticesNum/' + userid,
       method: 'GET',
       success(res) {
         resolve(res)
@@ -56,16 +56,57 @@ function getSearchResult(keyword) {
 }
 
 /**
- * 新建一个投诉
+ * 新建一个评论
  */
 
 
 function createNewComplaint(formData) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'http://49.235.115.35:18080/Front/NewComplaint',
+      url: 'https://napoleonxzy.cn/Front/NewComplaint',
       data: {
         ...formData
+      },
+      method: 'POST',
+      success(res) {
+        resolve(res)
+      },
+      fail() {
+        reject("服务错误")
+      }
+    })
+  })
+}
+/**
+ * 获得某个投诉的所有评论
+ */
+
+
+function getAllComments(complaintId) {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: 'napoleonxzy.cn/Front/Comment/?complaintId='+complaintId,
+      method: 'GET',
+      success(res) {
+        resolve(res)
+      },
+      fail() {
+        reject("服务错误")
+      }
+    })
+  })
+}
+/**
+ * 新建一个投诉
+ */
+
+
+function createNewComment(commentData) {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: 'napoleonxzy.cn/Front/Comment/1',
+      data: {
+        ...commentData
       },
       method: 'POST',
       success(res) {
@@ -86,7 +127,7 @@ function createNewComplaint(formData) {
 function deleteComplaint(complaintId) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'http://49.235.115.35:18080/Front/NoticesNum/',
+      url: 'https://napoleonxzy.cn/Front/NoticesNum/',
       method: 'GET',
       success(res) {
         resolve(res)
@@ -105,7 +146,7 @@ function deleteComplaint(complaintId) {
 function getComplaintDetail(complaintId) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'http://49.235.115.35:18080/Front/NoticesNum/',
+      url: 'https://napoleonxzy.cn/Front/ComplaintContent/'+complaintId,
       method: 'GET',
       success(res) {
         resolve(res)
@@ -119,7 +160,7 @@ function getComplaintDetail(complaintId) {
 
 export {
   getMonthData,
-  getMonthHotComment,
+  getMonthHotComplaint,
   getSearchResult,
   createNewComplaint,
   deleteComplaint,

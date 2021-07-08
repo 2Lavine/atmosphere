@@ -23,6 +23,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        loadingshow: false,
         columns: ['工业生产', '交通运输', '农业活动', '居民生活', '其他'],
         quickColumns: ['柴油车排放黑烟', '餐厅直排油烟', '工地排放烟尘', '居民燃放烟花爆竹'],
         index: 1,
@@ -164,6 +165,9 @@ Page({
             userId: app.globalData.openId,
             image: pic64
         };
+        this.setData({
+            loadingshow: true
+        })
         if (categoryNumber < 0 || !mapMessage.length > 0 || !complaintDescription.length > 0 || pic64.length == 0) {
             Dialog.alert({
                 message: '有信息尚未填完',
@@ -171,6 +175,9 @@ Page({
         } else {
             createNewComplaint(formObj).then(res => {
                 console.log(res);
+                this.setData({
+                    loadingshow: false
+                })
                 if (res.data.status === 'success') {
                     Dialog.confirm({
                             title: '提交成功',
@@ -253,5 +260,10 @@ Page({
      */
     onShareAppMessage: function (event) {
         return {}
+    },
+    onLoadingClickHide() {
+        this.setData({
+            show: false
+        });
     },
 })

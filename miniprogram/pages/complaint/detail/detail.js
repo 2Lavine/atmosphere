@@ -1,8 +1,12 @@
 // miniprogram/pages/complaint/detail/detail.js
 import {
     getComplaintDetail,
+    createNewComment,
+    getAllComments,
     deleteComplaint
 } from '../../../apis/complaintApi'
+import {baseURL} from '../../../config/requestConfig'
+
 const app = getApp();
 Page({
 
@@ -27,7 +31,7 @@ Page({
                 desc: '整改完成',
             },
         ],
-        active: 1,
+        activeStep: 1,
         likeName: 'like-o',
         collectName: 'delete-o',
         likeNumber: '20',
@@ -38,7 +42,19 @@ Page({
         tempFilePaths: '../../../../../../../../../pages/complaint/pic.webp',
         complaintDescription: "车牌号为",
         unit: "2132",
-        otherMessage: '其他的话'
+        otherMessage: '其他的话',
+        comment: '',
+        comments: [{
+            title: '123',
+            avatar: '../../../../pages/complaint/pic.webp',
+            desc: '1231231',
+            likeNumber: 20
+        }, {
+            title: '123',
+            avatar: '../../../../pages/complaint/pic.webp',
+            desc: '3231312',
+            likeNumber: 20
+        }],
     },
     likeHandler() {
         // this.updateBackEnd
@@ -67,17 +83,14 @@ Page({
         }
     },
     commentHandler(event) {
-        // let {
-        //     comments
-        // } = this.data
-        // comments.unshift(this.data.xxx)
-        // this.setData({
-        //     comments
-        // })
-        this.postComment()
-    },
-    postComment() {
-
+        let {
+            comment
+        } = this.data
+        comments.unshift(comment)
+        createNewComment()
+        this.setData({
+            comments
+        })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -86,12 +99,32 @@ Page({
         let {
             complaintId
         } = options
-        console.log(23232,complaintId);
-        getComplaintDetail(+complaintId).then(res=>{
+        getComplaintDetail(+complaintId).then(res => {
+            console.log(res);
+            let {
+                description,
+                image,
+                object,
+                position,
+                reason,
+                remark,
+                state,
+                type,
+                userid
+            } = res.data
             this.setData({
-                
+                categoryText: app.globalData.pollutionType[type],
+                mapMessage: position,
+                tempFilePaths: baseURL+image+'',
+                complaintDescription: description,
+                unit: object,
+                otherMessage: remark,
+                ownId: userid,
+                activeStep: state,
+                // likeNumber,
             })
         });
+        // getAllComments(+complaintId).then(res => {})
     },
 
     /**

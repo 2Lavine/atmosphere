@@ -4,7 +4,7 @@
 function GetRankList(userid){
   return new Promise(function(resolve,reject){
     wx.request({
-      url: "http://49.235.115.35:18080/Front/ExpMark/" + userid,
+      url: "http://napoleonxzy.cn/Front/ExpMark/" + userid,
       method:'GET',
       success(res){
         resolve(res)
@@ -22,7 +22,7 @@ function GetRankList(userid){
 function GetMineComplaint(userid){
   return new Promise(function(resolve, reject){
     wx.request({
-      url: 'http://49.235.115.35:18080/Front/GetComplaints/' + userid,
+      url: 'http://napoleonxzy.cn/Front/GetComplaints/' + userid,
       method: 'GET',
       success(res){
         resolve(res)
@@ -41,7 +41,7 @@ function GetMineComplaint(userid){
 function GetMineNotification(userid){
   return new Promise(function(resolve, reject){
     wx.request({
-      url: 'http://49.235.115.35:18080/Front/NoticesNum/' + userid,
+      url: 'http://napoleonxzy.cn/Front/NoticesNum/' + userid,
       method: 'GET',
       success(res){
         resolve(res)

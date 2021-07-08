@@ -2,7 +2,8 @@
 import * as echarts from '../../components/ec-canvas/echarts';
 import {
     getMonthData,
-    getMonthHotComment
+    getMonthHotComplaint,
+    getSearchResult
 } from '../../apis/complaintApi'
 const app = getApp();
 let chartData = [{
@@ -58,7 +59,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        hotComment: [{
+        hotComplaint: [{
             desc: 'descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc',
             title: '123',
             imageURL: '../../../../pages/complaint/pic.webp',
@@ -98,9 +99,9 @@ Page({
             res.data.f = res.data.f >= 0 ? "+" + res.data.f : res.data.f;
             this.setData(res.data)
         });
-        getMonthHotComment().then(res => {
+        getMonthHotComplaint().then(res => {
             console.log(res, 'hello');
-            let hotComment = res.data.map(item => {
+            let hotComplaint = res.data.map(item => {
                 let {
                     creater,
                     id,
@@ -109,14 +110,14 @@ Page({
                 } = item;
                 return {
                     desc: item.description,
-                    imageURL: "http://49.235.115.35:18080"+item.image,
+                    imageURL: "https://napoleonxzy.cn" + item.image,
                     id,
                     date: item.time.slice(0, 10),
                     title: item.type || "title",
                 }
             })
             this.setData({
-                hotComment
+                hotComplaint
             })
         });
     },
@@ -181,24 +182,26 @@ Page({
     },
     onGotoDetail(event) {
         let {
-            id
-        } = event;
-        console.log(id,'123123');
-        debugger;
+            complaintid
+        } = event.target.dataset;
         wx.navigateTo({
-            url: './detail/detail?complaintId=' + id,
+            url: './detail/detail?complaintId=' + complaintid,
         })
     },
     onSearch(event) {
         const {
             detail
         } = event;
+        debugger;
         if (detail === '') {
 
         } else {
-            this.setData({
-                showSearch: true
-            })
+            getSearchResult(event)
+                .then(res => {
+                    this.setData({
+                        showSearch: true
+                    })
+                })
         }
     },
     closeSearch() {

@@ -1,4 +1,4 @@
-const baseURL = 'http://napoleonxzy.cn:18080'
+const baseURL = 'http://napoleonxzy.cn'
 
 const jsonHeaders = {
   'Content-Type':'application/json'
