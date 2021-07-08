@@ -26,7 +26,7 @@
 
 <view class="my-rank-wrapper">
   <view class="my-avatar">
-    <van-image round width="5rem" height="5rem" src="{{userInfo.avatar}}"/>
+    <van-image round width="4.5rem" height="4.5rem" src="{{userInfo.avatar}}"/>
   </view>
   <view class="my-info-wrapper">
     <view class="info-top">
@@ -35,7 +35,7 @@
     </view>
     <view class="info-bottom">
       <view class="reward">
-        <van-image width="2rem" height="2rem" src="/static/img/reward.png"/>
+        <van-image width="1.5rem" height="1.5rem" src="/static/img/reward.png"/>
         <view style="margin-left: 1rem">{{userInfo.title}}</view>
       </view>
       <van-progress percentage="{{userInfo.percent}}" pivot-text="{{userInfo.flag}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>

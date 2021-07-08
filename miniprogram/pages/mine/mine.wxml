@@ -9,7 +9,7 @@
 
       <view wx:if="{{isUserLogin}}" style="flex-grow: 1;">
         <view class="user-baseinfo-box">
-          <text class="van-ellipsis" style="font-size:1.3rem;text-overflow:ellipsis;">{{userInfo.name}}</text>
+          <text class="van-ellipsis" style="font-size:1.25rem;text-overflow:ellipsis;">{{userInfo.name}}</text>
           <view style="display:flex;align-content:center;">
             <text style="font-size:1rem;margin-right:10rpx;line-height:2rem;flex-shrink: 0;">{{userInfo.phone == '' ? '请填写联系方式' : userInfo.phone}}</text>
             <van-icon name="edit" size="45rpx" bindtap="ShowPhoneModal"/>
@@ -40,12 +40,12 @@
   <view class="list-wrapper">
     <view class="list" wx:for="{{listItems}}" wx:key="index" data-checkNum="{{index}}" bindtap="pageNavigate">
       <view class="list-left">
-        <van-image width="2rem" height="2rem" src="{{item.imgSrc}}" />
+        <van-image width="1.5rem" height="1.5rem" src="{{item.imgSrc}}" />
         <view style="margin-left: 1rem">{{item.title}}</view>
       </view>
       <view>
         <van-image width="2rem" height="2rem" src="/static/img/dot.png" wx:if="{{item.textNum!=0}}" />
-        <van-image width="1.5rem" height="1.5rem" src="/static/img/next.png" />
+        <van-image width="1.2rem" height="1.2rem" src="/static/img/next.png" />
       </view>
     </view>
   </view>

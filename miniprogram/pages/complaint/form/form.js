@@ -67,6 +67,9 @@ Page({
                 QRCodeShow: true
             })
         }
+        this.setData({
+            showShare: false
+        });
     },
     onComplaintTypeChange() {
         this.setData({
