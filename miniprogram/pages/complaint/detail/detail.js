@@ -146,7 +146,9 @@ Page({
                 likeNumber: star || 20,
             })
         });
-        // getAllComments(+complaintId).then(res => {})
+        getAllComments(+complaintId).then(res => {
+            console.log(res,'hello world');
+        })
     },
 
     /**

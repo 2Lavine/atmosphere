@@ -85,8 +85,8 @@ function createNewComplaint(formData) {
 function getAllComments(complaintId) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'https://napoleonxzy.cn/Front/Comment/?complaintId=' + complaintId,
-      method: 'GET',
+      url: 'https://napoleonxzy.cn/GetComments/' + complaintId,
+      method: 'POST',
       success(res) {
         resolve(res)
       },
@@ -188,5 +188,6 @@ export {
   createNewComment,
   deleteComplaint,
   getComplaintDetail,
-  followComplaint
+  followComplaint,
+  getAllComments
 }
