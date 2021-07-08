@@ -95,6 +95,13 @@
 					"id": -1,
 					"name": "pages/mine/notification/notification",
 					"pathName": "pages/mine/notification/notification",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/myComplaint/myComplaint",
+					"pathName": "pages/mine/myComplaint/myComplaint",
 					"scene": null
 				}
 			]
