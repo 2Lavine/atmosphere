@@ -2,7 +2,8 @@
     <view class="general-box">
         <image class="bg-img" src="{{bgSrc}}"></image>
         <view class="share-btn">
-            <image bindtap="Share" class="share-icon" src="../../static/img/share.png" mode="widthFix"></image>
+            <image bindtap="ShowSharePanel" class="share-icon" src="../../static/img/share.png" mode="widthFix">
+            </image>
         </view>
         <view class="location-box" bindtap="SelectLocation">
             <van-icon name="location" />
@@ -45,6 +46,16 @@
         </van-grid>
     </view>
 </view>
-<view class="envinfo-box"></view>
+<view class="news-box">
+    <van-collapse accordion value="{{ activeName }}" bind:change="CollapseChange">
+        <view wx:for="{{newsArr}}">
+            <van-collapse-item  title="{{item.title}}" name="{{index}}">
+                {{item.content}}
+            </van-collapse-item>
+        </view>
+    </van-collapse>
+</view>
+
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog"/>
+<van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="ShareSelected" bind:close="onShareShowClose" overlay="{{false}}"/>
