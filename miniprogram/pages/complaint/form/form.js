@@ -189,11 +189,14 @@ Page({
                         })
                         .then(() => {
                             this.setData({
-                                showShare: true
+                                showShare: true,
+                                complaintId: res.data.result
                             });
                         })
                         .catch(() => {
-                            // on cancel
+                            wx.navigateTo({
+                                url: '../detail/detail?complaintId=' + res.data.result,
+                            })
                         });
                 }
             });
@@ -203,6 +206,9 @@ Page({
         this.setData({
             showShare: false
         });
+        wx.navigateTo({
+            url: '../detail/detail?complaintId=' + this.data.complaintId,
+        })
     },
     onQRCodeClose() {
         this.setData({

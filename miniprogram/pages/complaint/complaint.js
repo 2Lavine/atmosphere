@@ -119,13 +119,16 @@ Page({
                     id,
                     stars,
                     state,
+                    type
                 } = item;
                 return {
                     desc: item.description,
                     imageURL: "https://napoleonxzy.cn" + item.image,
                     id,
+                    status: app.globalData.state[state],
                     date: item.time.slice(0, 10),
-                    title: item.type || "title",
+                    // title:item.type || "title",
+                    title: app.globalData.pollutionType[type]
                 }
             })
             this.setData({

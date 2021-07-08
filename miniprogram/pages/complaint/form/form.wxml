@@ -9,7 +9,7 @@
       border="{{false}}" />
     <van-cell center title="图片" bind:click="getPhoto" required border="{{false}}">
       <block wx:if="{{tempFilePaths}}">
-        <image src="{{tempFilePaths}}" style="height:200prx;width:100%" />
+        <image src="{{tempFilePaths}}" style="height:200prx;width:100%"  mode="aspectFit"/>
       </block>
       <block wx:else>
         点击拍照
