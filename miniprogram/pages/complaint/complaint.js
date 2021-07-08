@@ -1,7 +1,24 @@
 // miniprogram/pages/complaint/complaint.js
 import * as echarts from '../../components/ec-canvas/echarts';
-
+import {
+    getMonthData,
+    getMonthHotComment
+} from '../../apis/complaintApi'
 const app = getApp();
+let chartData = [{
+        value: 60,
+        name: '当月受理'
+    },
+    {
+        value: 50,
+        name: '当月处理'
+    },
+    {
+        value: 30,
+        name: '当月整改'
+    },
+];
+
 
 function initChart(canvas, width, height, dpr) {
     const chart = echarts.init(canvas, null, {
@@ -28,22 +45,9 @@ function initChart(canvas, width, height, dpr) {
             left: '15%',
             top: '5%',
             sort: 'ascending',
-            data: [{
-                    value: 60,
-                    name: '访问'
-                },
-                {
-                    value: 50,
-                    name: '订单'
-                },
-                {
-                    value: 30,
-                    name: '咨询'
-                },
-            ]
+            data: chartData
         }, ]
     };
-
 
     chart.setOption(option);
     return chart;
@@ -54,38 +58,24 @@ Page({
      * 页面的初始数据
      */
     data: {
-        imageURL: '../../../../pages/complaint/pic.webp',
+        hotComment: [{
+            desc: 'descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc',
+            title: '123',
+            imageURL: '../../../../pages/complaint/pic.webp',
+            id: '0329',
+            status: '处理中',
+            date: '2021-2-2',
+        }, {
+            desc: 'descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc',
+            title: '123',
+            imageURL: '../../../../pages/complaint/pic.webp',
+            id: '0329',
+            status: '处理中',
+            date: '2021-2-2'
+        }],
         ec: {
             onInit: initChart
         },
-        option1: [{
-                text: '全部商品',
-                value: 0
-            },
-            {
-                text: '新款商品',
-                value: 1
-            },
-            {
-                text: '活动商品',
-                value: 2
-            },
-        ],
-        option2: [{
-                text: '默认排序',
-                value: 'a'
-            },
-            {
-                text: '好评排序',
-                value: 'b'
-            },
-            {
-                text: '销量排序',
-                value: 'c'
-            },
-        ],
-        value1: 0,
-        value2: 'a',
         showSearch: false
     },
     onGoDetail() {
@@ -98,7 +88,37 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        getMonthData().then(res => {
+            let monthDataArray = []
+            chartData[0].value = res.data.a;
+            chartData[1].value = res.data.c;
+            chartData[2].value = res.data.e;
+            res.data.b = res.data.b >= 0 ? "+" + res.data.b : res.data.b;
+            res.data.d = res.data.d >= 0 ? "+" + res.data.d : res.data.d;
+            res.data.f = res.data.f >= 0 ? "+" + res.data.f : res.data.f;
+            this.setData(res.data)
+        });
+        getMonthHotComment().then(res => {
+            console.log(res, 'hello');
+            let hotComment = res.data.map(item => {
+                let {
+                    creater,
+                    id,
+                    stars,
+                    state,
+                } = item;
+                return {
+                    desc: item.description,
+                    imageURL: "http://49.235.115.35:18080"+item.image,
+                    id,
+                    date: item.time.slice(0, 10),
+                    title: item.type || "title",
+                }
+            })
+            this.setData({
+                hotComment
+            })
+        });
     },
 
     /**
@@ -159,9 +179,14 @@ Page({
             url: './form/form',
         })
     },
-    onGotoDetail() {
+    onGotoDetail(event) {
+        let {
+            id
+        } = event;
+        console.log(id,'123123');
+        debugger;
         wx.navigateTo({
-            url: './detail/detail',
+            url: './detail/detail?complaintId=' + id,
         })
     },
     onSearch(event) {
@@ -176,9 +201,9 @@ Page({
             })
         }
     },
-    closeSearch(){
-      this.setData({
-        showSearch: false
-      })  
+    closeSearch() {
+        this.setData({
+            showSearch: false
+        })
     }
 })

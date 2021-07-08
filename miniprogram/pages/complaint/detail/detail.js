@@ -1,4 +1,9 @@
 // miniprogram/pages/complaint/detail/detail.js
+import {
+    getComplaintDetail,
+    deleteComplaint
+} from '../../../apis/complaintApi'
+const app = getApp();
 Page({
 
     /**
@@ -7,19 +12,19 @@ Page({
     data: {
         steps: [{
                 text: '步骤一',
-                desc: '描述信息',
+                desc: '已提交',
             },
             {
                 text: '步骤二',
-                desc: '描述信息',
+                desc: '已受理',
             },
             {
                 text: '步骤三',
-                desc: '描述信息',
+                desc: '处理中',
             },
             {
                 text: '步骤四',
-                desc: '描述信息',
+                desc: '整改完成',
             },
         ],
         active: 1,
@@ -28,12 +33,12 @@ Page({
         likeNumber: '20',
         commentlikeNumber: '20',
         imageURL: '../../../../../../../../../pages/complaint/pic.webp',
-        categoryText:'类别',
-        mapMessage:"地址是",
-        tempFilePaths:'../../../../../../../../../pages/complaint/pic.webp',
-        complaintDescription:"车牌号为",
-        unit:"2132",
-        otherMessage:'其他的话'
+        categoryText: '类别',
+        mapMessage: "地址是",
+        tempFilePaths: '../../../../../../../../../pages/complaint/pic.webp',
+        complaintDescription: "车牌号为",
+        unit: "2132",
+        otherMessage: '其他的话'
     },
     likeHandler() {
         // this.updateBackEnd
@@ -78,7 +83,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        let {
+            complaintId
+        } = options
+        console.log(23232,complaintId);
+        getComplaintDetail(+complaintId).then(res=>{
+            this.setData({
+                
+            })
+        });
     },
 
     /**

@@ -1,18 +1,23 @@
 // miniprogram/pages/complaint/form/form.js
-
+import {
+    createNewComplaint
+} from '../../../apis/complaintApi'
+import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
+let pic64 = ''
 let map = new Map();
 map.set('餐厅直排油烟', {
     quickCategoryText: '餐厅直排油烟',
-    categoryText: '大气污染',
-    categoryNumber: '0',
+    categoryText: '居民生活',
+    categoryNumber: '3',
     complaintDescription: "餐厅直接排放了油烟"
 })
 map.set('柴油车排放黑烟', {
     quickCategoryText: '柴油车排放黑烟',
-    categoryText: '大气污染',
-    categoryNumber: '0',
+    categoryText: '交通运输',
+    categoryNumber: '1',
     complaintDescription: "柴油车直接排放了油烟"
 })
+const app = getApp();
 Page({
     /**
      * 页面的初始数据
@@ -29,6 +34,7 @@ Page({
         mapMessage: '点击选择地图',
         complaintPlaceHolderDescription: '简单描述一下',
         tempFilePaths: '',
+        categoryNumber: -1,
         sharePopUpShow: true,
         showShare: false,
         options: [{
@@ -57,7 +63,7 @@ Page({
         console.log(event);
         if (name === '二维码') {
             this.setData({
-                QRCodeShow:true
+                QRCodeShow: true
             })
         }
     },
@@ -129,29 +135,59 @@ Page({
             success: (res) => {
                 // tempFilePath可以作为img标签的src属性显示图片
                 const tempFilePaths = res.tempFilePaths[0]
-                this.setData({
-                    tempFilePaths
-                })
+                wx.getFileSystemManager().readFile({
+                    filePath: tempFilePaths,
+                    encoding: 'base64',
+                    success: (res) => {
+                        console.log(res)
+                        pic64 = res.data;
+                        this.setData({
+                            tempFilePaths
+                        })
+                    }
+                });
             }
         })
     },
     submit() {
-        wx.request({
-            url: `/Front/NewComplaint/`,
-            // url: `/Front/NewComplaint/${userId}`,
-            data: {
-                type: this.data.categoryNumber,
-                img: this.data.tempFilePaths,
-                position: this.data.mapMessage,
-                description: this.data.complaintPlaceHolderDescription,
-                object: this.data.unit
-            },
-            complete: (res) => {
-                this.setData({
-                    showShare: true
-                });
-            }
-        })
+        let {
+            categoryNumber,
+            unit,
+            mapMessage,
+            complaintDescription,
+        } = this.data;
+        let formObj = {
+            type: +categoryNumber,
+            object: unit,
+            position: mapMessage,
+            description: complaintDescription,
+            userId: app.globalData.openId,
+            image: pic64
+        };
+        if (categoryNumber < 0 || !mapMessage.length > 0 || !complaintDescription.length > 0 || pic64.length == 0) {
+            Dialog.alert({
+                message: '有信息尚未填完',
+            })
+        } else {
+            createNewComplaint(formObj).then(res => {
+                console.log(res);
+                if (res.data.status === 'success') {
+                    Dialog.confirm({
+                            title: '提交成功',
+                            message: '点击和小伙伴分享哦',
+                            confirmButtonText: '分享',
+                        })
+                        .then(() => {
+                            this.setData({
+                                showShare: true
+                            });
+                        })
+                        .catch(() => {
+                            // on cancel
+                        });
+                }
+            });
+        }
     },
     onShareShowClose() {
         this.setData({

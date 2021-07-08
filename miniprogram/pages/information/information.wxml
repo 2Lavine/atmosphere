@@ -9,7 +9,7 @@
             <text style="margin:0 12rpx 0 10rpx;">{{cityName ? cityName : '定位中...'}}</text>
             <van-icon name="arrow" />
         </view>
-        <van-transition show="{{isShowUpdateTime}}" duration="1000" custom-style="position:absolute;transform: translate(-50%, 60%);">
+        <van-transition show="{{isShowUpdateTime}}" duration="1000" custom-style="position:absolute;transform: translate(-50%, 60%);white-space: nowrap;">
         数据更新时间：{{airNow.updateTime}}
         </van-transition>
         <view class="aqi-box">

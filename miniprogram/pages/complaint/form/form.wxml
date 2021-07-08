@@ -1,7 +1,7 @@
 <!--miniprogram/pages/complaint/form/form.wxml-->
 <view class="container">
   <van-cell-group class="cell-group" style="margin-bottom:60rpx">
-    <van-cell title="快速选择污染类别" value="{{quickCategoryText}}" bind:click="showQuickTypePopup" required
+    <van-cell title="快速选择污染类别" value="{{quickCategoryText}}" bind:click="showQuickTypePopup" 
       border="{{false}}" />
   </van-cell-group>
   <van-cell-group class="cell-group">
@@ -17,7 +17,7 @@
       </block>
     </van-cell>
     <van-field center input-align="right" label="具体描述" placeholder="{{complaintPlaceHolderDescription}}"
-      value="{{complaintDescription}}" model:value="{{  description }}" required border="{{false}}"
+      value="{{complaintDescription}}" model:value="{{ complaintDescription }}" required border="{{false}}"
       placeholder-style="text-align: right" />
     <van-field center input-align="right" label="投诉单位" model:value="{{ unit }}" placeholder="选填"
       placeholder-style="text-align: right" border="{{false}}" />
