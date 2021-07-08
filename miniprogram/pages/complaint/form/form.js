@@ -168,14 +168,14 @@ Page({
             userId: app.globalData.openId,
             image: pic64
         };
-        this.setData({
-            loadingshow: true
-        })
         if (categoryNumber < 0 || !mapMessage.length > 0 || !complaintDescription.length > 0 || pic64.length == 0) {
             Dialog.alert({
                 message: '有信息尚未填完',
             })
         } else {
+            this.setData({
+                loadingshow: true
+            })
             createNewComplaint(formObj).then(res => {
                 console.log(res);
                 this.setData({
