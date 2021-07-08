@@ -1,7 +1,7 @@
 <!--miniprogram/pages/mine/notification/notification.wxml-->
 <view wx:if="{{noticeList.length==0}}"><van-empty description="您没有通知哦~~~" /></view>
 <view wx:for="{{noticeList}}" wx:key="index" bindtap="console.log('123')">
-  <van-swipe-cell id="swipe-cell" right-width="{{65}}" async-close bind:close="onClose" data-index="{{index}}">
+  <van-swipe-cell id="swipe-cell" right-width="{{65}}" async-close bind:close="onClose" bind:open="onOpen" data-index="{{index}}">
   <van-cell-group data-index="{{index}}" bind:tap="showMessage">
     <van-cell title="{{item.title}}" value="{{item.time}}"/>
   </van-cell-group>

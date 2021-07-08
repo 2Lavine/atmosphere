@@ -18,7 +18,7 @@
           <van-image width="1.5rem" height="1.5rem" src="/static/img/reward.png"/>
             <view style="margin-left: 1rem">环保萌新</view>
         </view>
-        <van-progress percentage="{{item.pencent}}" pivot-text="{{item.exp}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+        <van-progress percentage="{{item.pencent}}" pivot-text="{{item.flag}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
       </view>
     </view>
   </view>
@@ -26,19 +26,19 @@
 
 <view class="my-rank-wrapper">
   <view class="my-avatar">
-    <van-image round width="5rem" height="5rem" src="/static/test-image/avatar.png"/>
+    <van-image round width="5rem" height="5rem" src="{{userInfo.avatar}}"/>
   </view>
   <view class="my-info-wrapper">
     <view class="info-top">
-      <view class="nick-name">王铁丸</view>
-      <view class="rank-num">5000+</view>
+      <view class="nick-name">{{userInfo.name}}</view>
+      <view class="rank-num">{{userorder}}</view>
     </view>
     <view class="info-bottom">
       <view class="reward">
         <van-image width="2rem" height="2rem" src="/static/img/reward.png"/>
-        <view style="margin-left: 1rem">环保萌新</view>
+        <view style="margin-left: 1rem">{{userInfo.title}}</view>
       </view>
-      <van-progress percentage="75" pivot-text="1758" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+      <van-progress percentage="{{userInfo.percent}}" pivot-text="{{userInfo.flag}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
     </view>
   </view>
 </view>

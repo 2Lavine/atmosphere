@@ -38,17 +38,16 @@
 
 
   <view class="list-wrapper">
-    <view class="list" wx:for="{{listItems}}" wx:key="index" data-checkNum="{{index}}">
+    <view class="list" wx:for="{{listItems}}" wx:key="index" data-checkNum="{{index}}" bindtap="pageNavigate">
       <view class="list-left">
         <van-image width="2rem" height="2rem" src="{{item.imgSrc}}" />
         <view style="margin-left: 1rem">{{item.title}}</view>
       </view>
       <view>
         <van-image width="2rem" height="2rem" src="/static/img/dot.png" wx:if="{{item.textNum!=0}}" />
-        <van-image width="2rem" height="2rem" src="/static/img/next.png" />
+        <van-image width="1.5rem" height="1.5rem" src="/static/img/next.png" />
       </view>
     </view>
-
   </view>
 </view>
 
@@ -66,3 +65,5 @@
     />
   </van-cell-group>
 </van-dialog>
+
+<van-dialog id="van-dialog" />

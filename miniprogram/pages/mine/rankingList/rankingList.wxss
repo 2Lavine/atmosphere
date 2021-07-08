@@ -7,7 +7,7 @@
 
 .rank-list{
   margin: 0.5em;
-  padding: 0.3em 0.5em;
+  padding: 0.3em 0.5em 0.8em;
   background-color: white;
   display: flex;
   font-size: 1em;
@@ -32,7 +32,7 @@
   background-color: #f3f3f3;
   display: flex;
   align-items: center;
-  padding: 0 0.5em;
+  padding: 0 0.5em 0.3em;
 }
 
 .like-rank{

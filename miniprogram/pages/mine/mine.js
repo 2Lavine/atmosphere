@@ -1,4 +1,5 @@
 const userLoginApi = require('../../apis/userLoginApi')
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 const app = getApp()
 
@@ -18,7 +19,7 @@ Page({
             {"title": '排行榜', "imgSrc": '/static/img/ranking.png', textNum: 0},
             {"title": '我的投诉', "imgSrc": '/static/img/myComplaint.png', textNum: 0},
             {"title": '通知', "imgSrc": '/static/img/notice.png', textNum: 0},
-            {"title": '勋章墙', "imgSrc": '/static/img/display.png', textNum: 0}
+            // {"title": '勋章墙', "imgSrc": '/static/img/display.png', textNum: 0}
         ],
         isShowPhoneModal: false,
         phoneNum: ''
@@ -27,6 +28,38 @@ Page({
         let that = this
         that.Refresh()
     },
+
+    pageNavigate: function(event){
+        // console.log(event.currentTarget.dataset.checknum)
+        let index = event.currentTarget.dataset.checknum
+        if(this.data.isUserLogin){
+            // console.log(index)
+            switch(index){
+                case 0:
+                    wx.navigateTo({
+                        url: '/pages/mine/rankingList/rankingList',
+                      })
+                    break;
+                case 1:
+                    wx.navigateTo({
+                        url: '/pages/mine/myComplaint/myComplaint',
+                      })
+                    break;
+                case 2:
+                    wx.navigateTo({
+                        url: '/pages/mine/notification/notification',
+                      })
+                    break;
+            }
+        }else{
+            Dialog.alert({
+                message: '请先登录~~~'
+              }).then(() => {
+                //close
+              })
+        }
+    },
+
     /* 刷新用户信息 */
     Refresh(){
         let that = this
@@ -111,6 +144,7 @@ Page({
     EditPhone(){
         let that = this
         console.log(that.data.phoneNum)
-        //////待改！！
+        
     }
 })
+

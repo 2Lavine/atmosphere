@@ -38,6 +38,13 @@ Page({
       })
     },
 
+    goToComplaint(){
+      console.log("go")
+      wx.navigateTo({
+        url: '/pages/complaint/detail/detail?complaintId=' + '1000123',
+      })
+    },
+
     getDate() {
       this.setData({
         polluteType: app.globalData.polluteType,
@@ -46,7 +53,7 @@ Page({
     },
 
     onChange(event) {
-      console.log(event)
+      // console.log(event)
       this.setData({
         activeName: event.detail,
       });
