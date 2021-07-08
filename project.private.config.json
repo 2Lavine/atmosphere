@@ -1,0 +1,58 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/mine/mine",
+          "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/rankingList/rankingList",
+          "pathName": "pages/mine/rankingList/rankingList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/myComplaint/myComplaint",
+          "pathName": "pages/mine/myComplaint/myComplaint",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/notification/notification",
+          "pathName": "pages/mine/notification/notification",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mine/myComplaint/myComplaint",
+          "pathName": "pages/mine/myComplaint/myComplaint",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/complaint/detail/detail",
+          "pathName": "pages/complaint/detail/detail",
+          "query": "complaintId=8",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

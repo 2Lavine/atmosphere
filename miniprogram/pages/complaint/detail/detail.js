@@ -2,10 +2,13 @@
 import {
     getComplaintDetail,
     createNewComment,
+    followComplaint,
     getAllComments,
     deleteComplaint
 } from '../../../apis/complaintApi'
-import {baseURL} from '../../../config/requestConfig'
+import {
+    baseURL
+} from '../../../config/requestConfig'
 
 const app = getApp();
 Page({
@@ -58,16 +61,18 @@ Page({
     },
     likeHandler() {
         // this.updateBackEnd
-        if (this.data.likeName === 'like-o')
+        if (this.data.likeName === 'like-o') {
             this.setData({
                 likeNumber: +this.data.likeNumber + 1,
                 likeName: 'like'
             })
-        else {
+            followComplaint(1,+this.data.complaintId, app.globalData.openId).then(res => console.log(res, 'follow'))
+        } else {
             this.setData({
                 likeNumber: +this.data.likeNumber - 1,
                 likeName: 'like-o'
             })
+            followComplaint(0, +this.data.complaintId, app.globalData.openId)
         }
     },
     collectHandler() {
@@ -84,12 +89,27 @@ Page({
     },
     commentHandler(event) {
         let {
-            comment
+            comment,
+            comments,
+            complaintId
         } = this.data
-        comments.unshift(comment)
-        createNewComment()
+        console.log(app);
+        let commentObj = {
+            id: +complaintId,
+            content: comment,
+            userid: app.globalData.openId,
+        }
+        comments.unshift({
+            title: app.globalData.userInfo.name,
+            avatar: app.globalData.userInfo.avatar,
+            desc: comment,
+            likeNumber: 33
+        })
         this.setData({
             comments
+        })
+        createNewComment(commentObj).then(res => {
+            console.log(res)
         })
     },
     /**
@@ -110,18 +130,20 @@ Page({
                 remark,
                 state,
                 type,
-                userid
+                userid,
+                star
             } = res.data
             this.setData({
                 categoryText: app.globalData.pollutionType[type],
                 mapMessage: position,
-                tempFilePaths: baseURL+image+'',
+                tempFilePaths: baseURL + image + '',
                 complaintDescription: description,
                 unit: object,
                 otherMessage: remark,
                 ownId: userid,
                 activeStep: state,
-                // likeNumber,
+                complaintId,
+                likeNumber: star || 20,
             })
         });
         // getAllComments(+complaintId).then(res => {})

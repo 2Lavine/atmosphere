@@ -56,7 +56,7 @@ function getSearchResult(keyword) {
 }
 
 /**
- * 新建一个评论
+ * 新建一个投诉
  */
 
 
@@ -85,7 +85,7 @@ function createNewComplaint(formData) {
 function getAllComments(complaintId) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'napoleonxzy.cn/Front/Comment/?complaintId='+complaintId,
+      url: 'https://napoleonxzy.cn/Front/Comment/?complaintId=' + complaintId,
       method: 'GET',
       success(res) {
         resolve(res)
@@ -104,7 +104,7 @@ function getAllComments(complaintId) {
 function createNewComment(commentData) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'napoleonxzy.cn/Front/Comment/1',
+      url: 'https://napoleonxzy.cn/Front/Comment/1',
       data: {
         ...commentData
       },
@@ -140,13 +140,35 @@ function deleteComplaint(complaintId) {
 }
 
 /**
+ * 关注评论
+ */
+
+function followComplaint(follow, complaintId, userid) {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: 'https://napoleonxzy.cn/Front/Star/' + follow,
+      method: 'POST',
+      data: {
+        id: +complaintId,
+        userid,
+      },
+      success(res) {
+        resolve(res)
+      },
+      fail() {
+        reject("服务错误")
+      }
+    })
+  })
+}
+/**
  * 获得投诉的详情
  */
 
 function getComplaintDetail(complaintId) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'https://napoleonxzy.cn/Front/ComplaintContent/'+complaintId,
+      url: 'https://napoleonxzy.cn/Front/ComplaintContent/' + complaintId,
       method: 'GET',
       success(res) {
         resolve(res)
@@ -163,6 +185,8 @@ export {
   getMonthHotComplaint,
   getSearchResult,
   createNewComplaint,
+  createNewComment,
   deleteComplaint,
-  getComplaintDetail
+  getComplaintDetail,
+  followComplaint
 }
