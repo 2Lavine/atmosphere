@@ -26,18 +26,32 @@
     </view>
   </view>
   <view class="list-wrapper">
-    <view class="list"  wx:for="{{listItems}}" wx:key="index" bindtap="test" data-checkNum="{{index}}">
+    <view class="list" wx:for="{{listItems}}" wx:key="index" data-checkNum="{{index}}" bindtap="pageNavigate">
       <view class="list-left">
         <van-image width="2rem" height="2rem" src="{{item.imgSrc}}"/>
         <view style="margin-left: 1rem">{{item.title}}</view>
       </view>
       <view>
-        <van-image width="2rem" height="2rem" src="/static/img/dot.png" wx:if="{{item.textNum!=0}}"/>
-        <van-image width="2rem" height="2rem" src="/static/img/next.png"/>
+        <van-image width="2rem" height="2rem" src="/static/img/dot.png" wx:if="{{item.textNum!=0}}" />
+        <van-image width="1.5rem" height="1.5rem" src="/static/img/next.png" />
       </view>
     </view>
-    
   </view>
 </view>
 
-      <!-- <van-image width="2rem" height="2rem" src="/static/img/myComplaint.png"/> -->
+<van-dialog use-slot show="{{isShowPhoneModal}}" title="填写联系电话"
+      bind:confirm="EditPhone" close-on-click-overlay="true"
+      show-cancel-button="true">
+  <van-cell-group>
+    <van-field
+      value="{{ phoneNum }}"
+      bind:change="PhoneInputChange"
+      placeholder="请输入联系电话"
+      border="{{ false }}"
+      type="number"
+      custom-style="margin: 20rpx;"
+    />
+  </van-cell-group>
+</van-dialog>
+
+<van-dialog id="van-dialog" />

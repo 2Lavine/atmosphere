@@ -1,34 +1,55 @@
 // miniprogram/pages/mine/rankingList/rankingList.js
 const mineApi = require('../../../apis/mineApi')
 const reward = require('../../../utils/reward')
+const app = getApp()
 
 Page({
     data: {
         scroll_y: null,
-        userexp: null,
+        // userexp: null,
         userorder: null,
         exps: null,
-        rewardTittle: []
+        userInfo: null
     },
     onLoad: function (options) {
         this.setScrollHeght()
+        this.getMineInfo()
         this.getExpsRank()
     },
+    getMineInfo:function(){
+        console.log(app.globalData.userInfo)
+        let res= app.globalData.userInfo
+        let userinfo = {}
+        userinfo.avatar = res.avatar
+        userinfo.name = res.name
+        userinfo.title = reward.setReward(res.exp)[0]
+        userinfo.pencent = reward.setReward(res.exp)[1]
+        userinfo.flag = reward.setReward(res.exp)[2]
+        this.setData({
+            userInfo: userinfo
+        })
+    },
+
     getExpsRank: function(){
-        mineApi.GetRankList('100023').then(res => {
+        mineApi.GetRankList(app.globalData.openId).then(res => {
             console.log(res.data)
             let expData = res.data
             let exps = []
+            let userorder = expData.userorder
             // console.log(reward.setReward(5000))
             for(let  i = 0; i < expData.exps.length; i++){
                 let index = reward.setReward(expData.exps[i].exp)
                 exps[i] = expData.exps[i]
                 exps[i].title = index[0]
                 exps[i].pencent = index[1]
+                exps[i].flag = index[2]
+            }
+            if(expData.userorder == -1){
+                userorder = "100+"
             }
             this.setData({
-                userexp: expData.userexp,
-                userorder: expData.userorder,
+                // userexp: expData.userexp,
+                userorder: userorder,
                 exps: exps
             })
         })

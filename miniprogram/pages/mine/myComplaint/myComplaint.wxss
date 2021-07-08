@@ -24,3 +24,17 @@
 .list-item{
   margin-bottom: 0.5em;
 }
+
+.next{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.next-wrapper{
+  display: flex;
+  /* background-color: whitesmoke; */
+  /* justify-content: flex-end; */
+  padding: 0.5em;
+  right: 0.5rem;
+  align-items: center;
+}

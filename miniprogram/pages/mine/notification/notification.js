@@ -25,7 +25,8 @@ Page({
             'time': '2020-01-04',
             'content': '你的投诉已完成'
           },
-        ]
+        ],
+        ifOpen: false
     },
     onLoad: function (options) {
       this.getMyNotification()
@@ -42,28 +43,43 @@ Page({
       const index = event.currentTarget.dataset.index
       switch (position) {
         case 'cell':
+          this.setData({
+            ifOpen: !this.data.ifOpen
+          })
           instance.close();
           break;
         case 'right':
           let noticeList = this.data.noticeList
           noticeList.splice(index, 1)
           this.setData({
-            noticeList: noticeList
+            noticeList: noticeList,
+            ifOpen: !this.data.ifOpen
           })
           instance.close()
           break;
       }
     },
 
-    showMessage(event){
+    onOpen(){
+      console.log("this")
+      if(this.data.ifOpen == false){
+        this.setData({
+          ifOpen: !this.data.ifOpen
+        })
+      }
+    },
+
+    showMessage(event){ 
       // console.log(event.currentTarget.dataset.index)
       const index = event.currentTarget.dataset.index
       let noticeList = this.data.noticeList
-      Dialog.alert({
-        title: noticeList[index].title,
-        message: noticeList[index].content
-      }).then(() => {
-        //close
-      })
+      if(this.data.ifOpen == false){
+        Dialog.alert({
+          title: noticeList[index].title,
+          message: noticeList[index].content
+        }).then(() => {
+          //close
+        })
+      }
     },
 })
