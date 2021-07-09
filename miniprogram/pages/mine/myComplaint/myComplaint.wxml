@@ -9,10 +9,10 @@
     <van-collapse accordion value="{{activeName}}" bind:change="onChange">
       <view wx:for="{{myComplaints}}" wx:key="index" data-index="index">
         <view class="list-item">
-          <van-collapse-item title="{{polluteType[item.type]}}" value="{{item.time}}" name="{{index + 1}}">
+          <van-collapse-item title="{{item.type}}" value="{{item.time}}" name="{{index + 1}}">
             <van-steps steps="{{steps}}" active="{{item.state}}" />
             <view class="next">
-              <view class="next-wrapper" bindtap="goToComplaint">
+              <view class="next-wrapper" bindtap="goToComplaint" data-index="{{index}}">
                 <view style="margin-right: 0.5em; height:1rem; line-height:1rem">查看投诉详情</view>
                 <view style="height:1rem">
                   <van-image round width="1rem" height="1rem" src="/static/img/next.png" mode="fitWidth"/>

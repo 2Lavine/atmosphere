@@ -29,12 +29,15 @@ Page({
         ifOpen: false
     },
     onLoad: function (options) {
-      this.getMyNotification()
+      this.getMyNotificationContent()
     },
 
-    getMyNotification(){
-      mineApi.GetMineNotification('100023').then(res => {
-        console.log(res.data)
+    getMyNotificationContent(){
+      // mineApi.GetMineNotification('100023').then(res => {
+      //   console.log(res.data)
+      // })
+      mineApi.GetNotificationContent('100023').then(res => {
+        console.log(res.date)
       })
     },
 

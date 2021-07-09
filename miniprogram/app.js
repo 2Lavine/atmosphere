@@ -1,13 +1,13 @@
 const userLoginApi = require('./apis/userLoginApi')
 
-const pollutetype = [ //污染类别
-  '黑烟柴油',
-  '油烟排放',
-  '尘土飞扬',
-  '油气泄露',
-  '烟尘排放',
-  '其他'
-]
+// const pollutetype = [ //污染类别
+//   '黑烟柴油',
+//   '油烟排放',
+//   '尘土飞扬',
+//   '油气泄露',
+//   '烟尘排放',
+//   '其他'
+// ]
 const pollutionType = ['工业生产', '交通运输', '农业活动', '居民生活', '其他']
 const state = [ // 投诉状态
   '已提交',
@@ -81,7 +81,6 @@ App({
     userInfo: null,
 
     userLocation: null,
-    polluteType: pollutetype,
     state: state,
     rewardTitle: rewardTitle,
     pollutionType

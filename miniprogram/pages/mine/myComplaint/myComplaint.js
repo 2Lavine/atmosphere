@@ -11,14 +11,11 @@ const mineApi = require('../../../apis/mineApi')
 
 Page({
     data: {
-        polluteType: [],
-        state: [],
-        myComplaints: [
-            {'type': 2, 'state': 1, 'description': 'testtesttest', 'time': '2021-11-05'},
-            {'type': 1, 'state': 0, 'description': 'testtesttest', 'time': '2021-11-05'},
-            {'type': 3, 'state': 2, 'description': 'testtesttest', 'time': '2021-11-05'},
-        ],
-        activeName: null,
+        pollutionType: null,
+        // state: [],
+        openId: null,
+        myComplaints: [],
+        activeName: 1,
         steps: [
           {desc: state[0],},
           {desc: state[1],},
@@ -33,22 +30,36 @@ Page({
     },
 
     getMyComplaintList(){
-      mineApi.GetMineComplaint('100023').then(res => {
+      mineApi.GetMineComplaint(this.data.openId).then(res => {
         console.log(res.data)
+        let result = res.data
+        let myComplaints = res.data
+        for(let i = 0; i < result.length; i++){
+          myComplaints[i].time = result[i].time.substring(0, 10)
+          let index = myComplaints[i].type
+          myComplaints[i].type = this.data.pollutionType[index]
+        }
+        // console.log(myComplaints)
+        this.setData({
+          myComplaints: myComplaints
+        })
       })
     },
 
-    goToComplaint(){
-      console.log("go")
+    goToComplaint(event){
+      // console.log(event.currentTarget.dataset.index)
+      let index = event.currentTarget.dataset.index
       wx.navigateTo({
-        url: '/pages/complaint/detail/detail?complaintId=' + '1000123',
+        url: '/pages/complaint/detail/detail?complaintId=' + this.data.myComplaints[index].id,
       })
     },
 
     getDate() {
+      // console.log(app.globalData.pollutionType)
       this.setData({
-        polluteType: app.globalData.polluteType,
-        state: app.globalData.state
+        pollutionType: app.globalData.pollutionType,
+        // state: app.globalData.state,
+        openId: app.globalData.openId
       })
     },
 
