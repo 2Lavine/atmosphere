@@ -16,7 +16,7 @@
       <view class="info-bottom" style="font-size: xsmall">
         <view class="reward">
           <van-image width="1.5rem" height="1.5rem" src="/static/img/reward.png"/>
-            <view style="margin-left: 1rem">环保萌新</view>
+            <view style="margin-left: 1rem">{{item.title}}</view>
         </view>
         <van-progress percentage="{{item.pencent}}" pivot-text="{{item.flag}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
       </view>
@@ -38,7 +38,7 @@
         <van-image width="1.5rem" height="1.5rem" src="/static/img/reward.png"/>
         <view style="margin-left: 1rem">{{userInfo.title}}</view>
       </view>
-      <van-progress percentage="{{userInfo.percent}}" pivot-text="{{userInfo.flag}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
+      <van-progress percentage="{{userInfo.pencent}}" pivot-text="{{userInfo.flag}}" pivot-color="#fda085" color="linear-gradient(to right, #f6d365, #fda085)"/>
     </view>
   </view>
 </view>

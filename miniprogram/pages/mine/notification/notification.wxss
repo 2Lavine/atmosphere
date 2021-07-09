@@ -1,6 +1,22 @@
 /* miniprogram/pages/mine/notification/notification.wxss */
-.test{
-  width: 100vh;
-  height: 3rem;
-  background-color: red;
+
+.message-wrapper{
+  color: rgba(0, 0, 0, 0.6);
+  padding: 1em 1em;
+  text-align: center;
+}
+
+.next{
+  display: flex;
+  justify-content: flex-end;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.next-wrapper{
+  display: flex;
+  /* background-color: whitesmoke; */
+  /* justify-content: flex-end; */
+  padding: 0.5em;
+  right: 0.5rem;
+  align-items: center;
 }

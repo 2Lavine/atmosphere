@@ -11,7 +11,7 @@ Page({
         exps: null,
         userInfo: null
     },
-    onLoad: function (options) {
+    onShow: function (options) {
         this.getMineInfo()
         this.getExpsRank()
         this.setScrollHeght()
@@ -22,9 +22,6 @@ Page({
         let userinfo = {}
         userinfo.avatar = res.avatar
         userinfo.name = res.name
-        userinfo.title = reward.setReward(res.exp)[0]
-        userinfo.pencent = reward.setReward(res.exp)[1]
-        userinfo.flag = reward.setReward(res.exp)[2]
         this.setData({
             userInfo: userinfo
         })
@@ -36,6 +33,8 @@ Page({
             let expData = res.data
             let exps = []
             let userorder = expData.userorder
+            let userinfo = this.data.userInfo
+            userinfo.order = userorder
             // console.log(reward.setReward(5000))
             for(let  i = 0; i < expData.exps.length; i++){
                 let index = reward.setReward(expData.exps[i].exp)
@@ -47,10 +46,15 @@ Page({
             if(expData.userorder == -1){
                 userorder = "100+"
             }
+            let result = reward.setReward(expData.userexp)
+            userinfo.title = result[0]
+            userinfo.pencent = result[1]
+            userinfo.flag = result[2]
             this.setData({
                 // userexp: expData.userexp,
                 userorder: userorder,
-                exps: exps
+                exps: exps,
+                userInfo: userinfo
             })
         })
     },

@@ -74,6 +74,7 @@ function GetNotificationContent(userid){
   })
 }
 
+
 module.exports = {
   GetRankList,
   GetMineComplaint,

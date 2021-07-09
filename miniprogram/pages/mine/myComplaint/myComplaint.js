@@ -24,7 +24,7 @@ Page({
         ],
     },
     
-    onLoad: function (options) {
+    onShow: function (options) {
        this.getDate()
        this.getMyComplaintList()
     },

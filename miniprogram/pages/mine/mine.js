@@ -1,6 +1,7 @@
 const userLoginApi = require('../../apis/userLoginApi')
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 const mineApi = require('../../apis/mineApi')
+const reward = require('../../utils/reward')
 
 const app = getApp()
 const regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$"
@@ -27,10 +28,26 @@ Page({
         phoneNum: '',
         openId: null
     },
-    onLoad: function (options) {
+    onShow: function (options) {
         let that = this
         that.Refresh()
         that.getMyNotification()
+        that.getMyexp()
+    },
+
+    getMyexp(){
+        mineApi.GetRankList(app.globalData.openId).then(res => {
+            let result = res.data.userexp
+            let userexp = reward.setReward(result)
+            let userInfo = this.data.userInfo
+            userInfo.level = userexp[0]
+            userInfo.expRatio = userexp[1]
+            userInfo.expText = userexp[2]
+            this.setData({
+                userInfo: userInfo
+            })
+           console.log(userexp)
+        })
     },
 
     //获取我的通知的数量
@@ -64,9 +81,14 @@ Page({
                       })
                     break;
                 case 2:
+                    let listItems = this.data.listItems
+                    listItems[2].isNotify = false
                     wx.navigateTo({
                         url: '/pages/mine/notification/notification',
                       })
+                    this.setData({
+                        listItems: listItems
+                    })
                     break;
             }
         }else{

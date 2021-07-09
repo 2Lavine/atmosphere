@@ -3,14 +3,14 @@
 <view wx:for="{{noticeList}}" wx:key="index" bindtap="console.log('123')">
   <van-swipe-cell id="swipe-cell" right-width="{{65}}" async-close bind:close="onClose" bind:open="onOpen" data-index="{{index}}">
   <van-cell-group data-index="{{index}}" bind:tap="showMessage">
-    <van-cell title="{{item.title}}" value="{{item.time}}"/>
+    <van-cell title="投诉反馈" value="{{item.time}}"/>
   </van-cell-group>
   <view slot="right">
     <van-button type="warning">删除</van-button>
   </view>
   </van-swipe-cell>
 </view>
-
+ 
 <!-- <view class="test" bindtap="test"></view> -->
 
 <!-- <van-dialog 
@@ -20,7 +20,25 @@
   bind:confirm="onComfirm">
 </van-dialog> -->
 
-<van-dialog id="van-dialog" />
+<!-- <van-dialog use-slot title="标题" id="van-dialog" >
+  <van-image round width="1rem" height="1rem" src="/static/img/next.png" mode="fitWidth"/>
+</van-dialog> -->
+
+<van-dialog
+  use-slot
+  title="投诉反馈"
+  show="{{showDialog}}"
+  bind:confirm="dialogConfirm">
+  <view class="message-wrapper">{{message}}</view>
+  <view class="next">
+    <view class="next-wrapper" bindtap="goToComplaint" data-index="{{index}}">
+      <view style="margin-right: 0.5em; height:1rem; line-height:1rem">查看投诉详情</view>
+      <view style="height:1rem">
+        <van-image round width="1rem" height="1rem" src="/static/img/next.png" mode="fitWidth"/>
+      </view>
+    </view>
+  </view>
+</van-dialog>
 
 <!-- <van-dialog
   message=""
