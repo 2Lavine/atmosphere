@@ -43,6 +43,34 @@ Page({
         },
         lifeIndices: {}, // 生活指数（1：运动指数；5：紫外线指数；6：旅游指数；空气污染扩散条件指数：10）
         isShowUpdateTime: false,
+        activeName: 0,
+        newsArr: [
+            {
+                title: '9日至10日强降雨来袭',
+                content: '7月4日以来，我国主雨带位于四川盆地至沿淮地区，四川、重庆、湖北、河南、江苏、安徽等地持续出现较强降雨，目前淮河流域降雨已减弱。预计9日至10日，将有新一轮降雨过程开始发展，四川、甘肃、陕西、青海等地将有强降雨，这次的降雨具有一定极端性，部分地区发生山洪、地质灾害的气象风险高，需加强灾害防御工作。11日至12日，强降雨区会东移北抬。'
+            },
+            {
+                title: '二十四节气之小暑：伏日来临 暑热袭人',
+                content: '小暑，二十四节气的第十一个节气，太阳到达黄经105°时为小暑。《月令七十二候集解》中记载：“六月节……暑，热也，就热之中分为大小，月初为小，月中为大，今则热气犹小也。”暑，是炎热的意思，小暑为小热，此时天气开始炎热，却没有达到极致。小暑的标志是出梅，入伏，到7月22日或23日结束。此时正值初伏前后。小暑期间，全国大部分地区进入盛夏。'
+            },
+            {
+                title: '中国气象局部署盛夏期间气象防灾减灾工作',
+                content: '7月8日，在全国天气会商后，中国气象局召开视频会议，结合当前汛期形势和盛夏气候预测情况，对气象服务工作进行再部署、再强化、再落实。今年以来，天气气候特征异常，预测显示盛夏期间旱涝灾害较重，防灾减灾形势日趋严峻。会前，中国气象局党组书记、局长庄国泰，党组成员、副局长余勇对盛夏期间气象服务工作进行了部署、提出明确要求，总工程师黎健在会上作工作安排。'
+            },
+            
+        ],
+        showShare: false,
+        options: [
+            {
+                name: '微信',
+                icon: 'wechat',
+                openType: 'share'
+            },
+            {
+                name: '二维码',
+                icon: 'qrcode'
+            }
+        ],
     },
 
     onLoad (options) {
@@ -257,9 +285,33 @@ Page({
         })
     },
     /* 分享按钮点击事件 */
-    Share(){
-        wx.showShareMenu({
-            menus: ['shareAppMessage', 'shareTimeline']
+    ShowSharePanel(){
+        this.setData({
+            showShare: true
+        });
+    },
+    ShareSelected(){
+        this.setData({
+            showShare: false
+        });
+    },
+    onShareShowClose() {
+        this.setData({
+            showShare: false
+        });
+    },
+    onShareAppMessage: function (res) {
+        return {
+            title: '守护大气 可以在微信小程序中使用啦！',
+            path: '/pages/information/information',
+            success: function () {},
+            fail: function () {}
+        }
+    },
+    /* 切换折叠面板展开项 */
+    CollapseChange(e){
+        this.setData({
+            activeName: e.detail,
         })
     }
 
