@@ -47,17 +47,7 @@ Page({
         unit: "2132",
         otherMessage: '其他的话',
         comment: '',
-        comments: [{
-            title: '123',
-            avatar: '../../../../pages/complaint/pic.webp',
-            desc: '1231231',
-            likeNumber: 20
-        }, {
-            title: '123',
-            avatar: '../../../../pages/complaint/pic.webp',
-            desc: '3231312',
-            likeNumber: 20
-        }],
+        comments: [],
     },
     likeHandler() {
         // this.updateBackEnd
@@ -66,7 +56,7 @@ Page({
                 likeNumber: +this.data.likeNumber + 1,
                 likeName: 'like'
             })
-            followComplaint(1,+this.data.complaintId, app.globalData.openId).then(res => console.log(res, 'follow'))
+            followComplaint(1, +this.data.complaintId, app.globalData.openId).then(res => console.log(res, 'follow'))
         } else {
             this.setData({
                 likeNumber: +this.data.likeNumber - 1,
@@ -119,7 +109,7 @@ Page({
         let {
             complaintId
         } = options
-        getComplaintDetail(+complaintId).then(res => {
+        getComplaintDetail(+complaintId,app.globalData.openId).then(res => {
             console.log(res);
             let {
                 description,
@@ -131,9 +121,10 @@ Page({
                 state,
                 type,
                 userid,
-                star
+                stars,
+                userstar
             } = res.data
-            this.setData({
+            let dataObj = {
                 categoryText: app.globalData.pollutionType[type],
                 mapMessage: position,
                 tempFilePaths: baseURL + image + '',
@@ -143,11 +134,27 @@ Page({
                 ownId: userid,
                 activeStep: state,
                 complaintId,
-                likeNumber: star || 20,
-            })
+                userstar,
+                likeNumber: stars ,
+            };
+            if (userstar) {
+                dataObj.likeName = 'like'
+            }
+            this.setData(dataObj)
+
         });
         getAllComments(+complaintId).then(res => {
-            console.log(res,'hello world');
+            let comments = res.data.map(item => {
+                return {
+                    title: item.username,
+                    avatar: item.avatar,
+                    desc: item.content,
+                    likeNumber: 33
+                }
+            })
+            this.setData({
+                comments
+            })
         })
     },
 

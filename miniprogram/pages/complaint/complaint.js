@@ -1,5 +1,6 @@
 // miniprogram/pages/complaint/complaint.js
 import * as echarts from '../../components/ec-canvas/echarts';
+import {baseURL} from '../../config/requestConfig'
 import {
     getMonthData,
     getMonthHotComplaint,
@@ -77,6 +78,7 @@ Page({
         ec: {
             onInit: initChart
         },
+        searchComplaint:[],
         showSearch: false
     },
     onGoDetail() {
@@ -123,7 +125,7 @@ Page({
                 } = item;
                 return {
                     desc: item.description,
-                    imageURL: "https://napoleonxzy.cn" + item.image,
+                    imageURL: baseURL + item.image,
                     id,
                     status: app.globalData.state[state],
                     date: item.time.slice(0, 10),
@@ -193,14 +195,35 @@ Page({
         const {
             detail
         } = event;
+
         if (detail === '') {
 
         } else {
-            getSearchResult(event)
+            getSearchResult(detail)
                 .then(res => {
+                    let searchComplaint = res.data.map(item => {
+                        let {
+                            creater,
+                            id,
+                            stars,
+                            state,
+                            type
+                        } = item;
+                        return {
+                            desc: item.description,
+                            imageURL: baseURL + item.image,
+                            id,
+                            status: app.globalData.state[state],
+                            date: item.time.slice(0, 10),
+                            // title:item.type || "title",
+                            title: app.globalData.pollutionType[type]
+                        }
+                    })
                     this.setData({
+                        searchComplaint,
                         showSearch: true
                     })
+                   
                 })
         }
     },

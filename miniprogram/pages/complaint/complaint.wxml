@@ -7,10 +7,18 @@
     <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
   </van-dropdown-menu> -->
   <block wx:if="{{showSearch}}">
-    <view wx:for="array12321312" style="width:100%" wx:key="index">
-      <van-card desc="描述信息硕大的撒多多撒大所描述信息硕大的撒多多撒大所" title="商品标题" thumb="{{ imageURL }}" style="width:100%"
-      data-complaintid="{{item.id}}" bind:tap="onGotoDetail" />
-    </view>
+    <view wx:for="{{searchComplaint}}" style="width:100%" wx:key="index">
+        <van-card desc="{{item.desc}}" title="{{item.title}}" thumb="{{ item.imageURL }}" style="width:100%"
+          custom-class="customCard" thumb-class="avatar" desc-class="van-multi-ellipsis--l2" bind:tap="onGotoDetail"
+          data-complaintid="{{item.id}}">
+          <view slot="price">
+            <view class="card-footer">
+              <view>{{item.status}}</view>
+              <view>{{item.date}}</view>
+            </view>
+          </view>
+        </van-card>
+      </view>
   </block>
   <block wx:else>
 

@@ -1,14 +1,15 @@
 /**
  * 获取排名信息
  */
-function GetRankList(userid){
-  return new Promise(function(resolve,reject){
+function GetRankList(userid) {
+  return new Promise(function (resolve, reject) {
     wx.request({
-      url: "https://napoleonxzy.cn/Front/ExpMark/" + userid,
-      method:'GET',
-      success(res){
+      url: baseURL + "/Front/ExpMark/" + userid,
+      method: 'GET',
+      success(res) {
         resolve(res)
-      },fail(){
+      },
+      fail() {
         reject("服务错误")
       }
     })
@@ -19,14 +20,15 @@ function GetRankList(userid){
  * 获取我的投诉
  */
 
-function GetMineComplaint(userid){
-  return new Promise(function(resolve, reject){
+function GetMineComplaint(userid) {
+  return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'https://napoleonxzy.cn/Front/GetComplaints/' + userid,
+      url: baseURL + '/Front/GetComplaints/' + userid,
       method: 'GET',
-      success(res){
+      success(res) {
         resolve(res)
-      },fail(){
+      },
+      fail() {
         reject("服务错误")
       }
     })
@@ -38,14 +40,15 @@ function GetMineComplaint(userid){
  */
 
 
-function GetMineNotification(userid){
-  return new Promise(function(resolve, reject){
+function GetMineNotification(userid) {
+  return new Promise(function (resolve, reject) {
     wx.request({
-      url: 'https://napoleonxzy.cn/Front/NoticesNum/' + userid,
+      url: baseURL + '/Front/NoticesNum/' + userid,
       method: 'GET',
-      success(res){
+      success(res) {
         resolve(res)
-      },fail(){
+      },
+      fail() {
         reject("服务错误")
       }
     })
@@ -57,4 +60,3 @@ module.exports = {
   GetMineComplaint,
   GetMineNotification
 }
-
