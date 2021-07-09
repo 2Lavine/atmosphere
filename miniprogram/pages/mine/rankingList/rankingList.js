@@ -12,9 +12,9 @@ Page({
         userInfo: null
     },
     onLoad: function (options) {
-        this.setScrollHeght()
         this.getMineInfo()
         this.getExpsRank()
+        this.setScrollHeght()
     },
     getMineInfo:function(){
         console.log(app.globalData.userInfo)
