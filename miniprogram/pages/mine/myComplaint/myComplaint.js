@@ -13,6 +13,7 @@ Page({
     data: {
         polluteType: [],
         state: [],
+        openId: null,
         myComplaints: [
             {'type': 2, 'state': 1, 'description': 'testtesttest', 'time': '2021-11-05'},
             {'type': 1, 'state': 0, 'description': 'testtesttest', 'time': '2021-11-05'},
@@ -33,22 +34,24 @@ Page({
     },
 
     getMyComplaintList(){
-      mineApi.GetMineComplaint('100023').then(res => {
+      mineApi.GetMineComplaint(this.data.openId).then(res => {
         console.log(res.data)
       })
     },
 
-    goToComplaint(){
-      console.log("go")
+    goToComplaint(event){
+      // console.log(event.currentTarget.dataset.index)
+      let index = event.currentTarget.dataset.index
       wx.navigateTo({
-        url: '/pages/complaint/detail/detail?complaintId=' + '1000123',
+        url: '/pages/complaint/detail/detail?complaintId=' + 8,
       })
     },
 
     getDate() {
       this.setData({
         polluteType: app.globalData.polluteType,
-        state: app.globalData.state
+        state: app.globalData.state,
+        openId: app.globalData.openId
       })
     },
 

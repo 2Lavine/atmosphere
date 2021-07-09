@@ -2,6 +2,7 @@ const userLoginApi = require('../../apis/userLoginApi')
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 const app = getApp()
+const regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$"
 
 const levelDict = {
     '200': '环保萌新',
@@ -142,9 +143,26 @@ Page({
         this.setData({phoneNum: e.detail})
     },
     EditPhone(){
-        let that = this
-        console.log(that.data.phoneNum)
-        
+        // let that = this
+        // console.log(this.data.phoneNum)
+        let phoneNum = this.data.phoneNum
+        if(phoneNum.length == 0){
+            Dialog.alert({
+                message: '您输入的手机号为空'
+            })
+        }else{
+            if(!(/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phoneNum))){
+                Dialog.alert({
+                    message: '您输入的手机号格式错误'
+                })
+            }else{
+                let userInfo = this.data.userInfo
+                userInfo.phone = phoneNum
+                this.setData({
+                    userInfo: userInfo
+                })
+            }
+        }
     }
 })
 

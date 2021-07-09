@@ -12,6 +12,7 @@
           <text class="van-ellipsis" style="font-size:1.3rem;text-overflow:ellipsis;">{{userInfo.name}}</text>
           <view style="display:flex;align-content:center;">
             <text style="font-size:1rem;margin-right:10rpx;line-height:2rem;flex-shrink: 0;">{{userInfo.phone == '' ? '请填写联系方式' : userInfo.phone}}</text>
+            <!-- <text style="font-size:1rem;margin-right:10rpx;line-height:2rem;flex-shrink: 0;">{{userInfo.phone == '' ? '请填写联系方式' : phoneNum}}</text> -->
             <van-icon name="edit" size="45rpx" bindtap="ShowPhoneModal"/>
           </view>
         </view>
