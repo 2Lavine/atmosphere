@@ -35,18 +35,18 @@ Page({
                 desc: '整改完成',
             },
         ],
-        activeStep: 1,
+        activeStep: 0,
         likeName: 'like-o',
         collectName: 'delete-o',
-        likeNumber: '20',
-        commentlikeNumber: '20',
-        imageURL: '../../../../../../../../../pages/complaint/pic.webp',
+        likeNumber: '0',
+        commentlikeNumber: '0',
+        imageURL: '',
         categoryText: '类别',
-        mapMessage: "地址是",
-        tempFilePaths: '../../../../../../../../../pages/complaint/pic.webp',
-        complaintDescription: "车牌号为",
+        mapMessage: "地址信息",
+        tempFilePaths: '',
+        complaintDescription: "具体描述",
         unit: "2132",
-        otherMessage: '其他的话',
+        otherMessage: '留言',
         comment: '',
         comments: [],
     },
@@ -94,14 +94,14 @@ Page({
             title: app.globalData.userInfo.name,
             avatar: app.globalData.userInfo.avatar,
             desc: comment,
-            likeNumber: 33
+            likeNumber: 0
         })
         this.setData({
             comments
         })
         createNewComment(commentObj).then(res => {
             console.log(res)
-            increaseExp(app.globalData.openId, 50, "评论成功")
+            increaseExp(app.globalData.openId, 5, "评论成功")
         })
     },
     /**
@@ -151,7 +151,7 @@ Page({
                     title: item.username,
                     avatar: item.avatar,
                     desc: item.content,
-                    likeNumber: 33
+                    likeNumber: 0
                 }
             })
             this.setData({

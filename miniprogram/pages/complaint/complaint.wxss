@@ -54,6 +54,7 @@
 }
 
 .table-name {
+  font-size: 1.1rem;
   margin: 25rpx;
   color: rgba(0, 0, 0, .7)
 }
@@ -112,10 +113,29 @@
   width: 20rpx;
 }
 
-.customCard {
+.van-card{
+  padding: 30rpx 20rpx !important;
   background-color: white !important;
+  border-top: 1px #e8e8e888 solid;
 }
-.card-footer{
+
+.card-footer {
   display: flex;
   justify-content: space-between;
+  font-size: 0.85rem;
+}
+.empty-result {
+  margin: 20rpx;
+  color: rgba(0, 0, 0, .3)
+}
+.van-card__title{
+  font-size: 0.9rem;
+  font-weight: 600 !important;
+  color: #666666 !important;
+}
+
+.van-card__desc{
+  font-size: 0.9rem;
+  margin-top: 10rpx;
+  text-overflow:ellipsis;
 }

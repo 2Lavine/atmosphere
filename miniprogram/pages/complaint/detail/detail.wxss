@@ -1,4 +1,5 @@
 /* miniprogram/pages/complaint/detail/detail.wxss */
+
 .card {
   margin-top: 20rpx;
   border-radius: 20rpx;
@@ -13,11 +14,13 @@
   /* background-color: white; */
   height: 100vh;
 }
-.icon-group{
+
+.icon-group {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .like {
   display: flex;
   flex-direction: column;
@@ -32,19 +35,43 @@
   width: 48rpx;
   height: 48rpx;
 }
+
 .avatar {
-  width: 48rpx !important;
-  height: 48rpx !important;
+  width: 60rpx !important;
+  height: 60rpx !important;
 }
-.titelClass{
-  font-weight: bolder;
+
+.van-card__thumb {
+  width: 60rpx !important;
 }
-.descClass{
-  font-weight: bolder;
-}
-.van-card__thumb{
-  width: 48rpx !important;
-}
-.customCard{
+
+.customCard {
   background-color: white !important;
+
+}
+
+.customTitle {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  color: #585858 !important;
+  line-height: 56rpx !important;
+}
+
+.van-step__title{
+  font-size: 0.85rem !important;
+}
+
+.van-cell__title{
+  font-size: 1rem;
+}
+.van-cell__label{
+  font-size: 0.8rem;
+}
+.van-cell__value{
+  font-size: 0.9rem;
+}
+.van-card__desc{
+  font-size: 0.95rem !important;
+  margin-top: 10rpx;
+  color: #7e7e7e !important;
 }

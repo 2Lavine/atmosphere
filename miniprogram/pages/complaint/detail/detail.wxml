@@ -19,8 +19,8 @@
       </block>
       <view class="icon-group">
         <view class="like" style="background:white">
-          <van-icon name="{{likeName}}" color="pink" size='3rem' bind:click="likeHandler" border="{{ false }}" />
-          {{likeNumber}}
+          <van-icon name="{{likeName}}" color="pink" size='2rem' bind:click="likeHandler" border="{{ false }}" />
+          关注:{{likeNumber}}
         </view>
       </view>
     </van-cell-group>
@@ -29,13 +29,14 @@
     <van-field right-icon="comment-o" bind:click-icon="commentHandler" custom-style="background:rgba(0,0,0,.035)"
       model:value="{{ comment }}" placeholder="留下你的评论" border="{{ false }}" />
   </van-cell-group>
-  <block wx:if="{{comments}}">
+  <block wx:if="{{comments.length>0}}">
     <view class="card" style="margin-bottom:40rpx">
       <view wx:for="{{comments}}" style="width:100%" wx:key="index">
         <van-card desc="{{item.desc}}" title="{{item.title}}" style="width:100%" custom-class="customCard"
-          thumb-class="avatar" desc-class="descClass" thumb-mode="aspectFill" thumb="{{item.avatar}}">
-          <view slot="footer">
-            <van-icon name="good-job-o" size='16' />
+          thumb-class="avatar" desc-class="descClass" thumb-mode="aspectFill" thumb="{{item.avatar}}"
+          title-class="customTitle">
+          <view slot="footer" style="font-size:0.9rem">
+            <van-icon name="good-job-o" size='18' />
             {{item.likeNumber}}
           </view>
         </van-card>

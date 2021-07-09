@@ -4,8 +4,6 @@ const mineApi = require('../../apis/mineApi')
 const reward = require('../../utils/reward')
 
 const app = getApp()
-const regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$"
-
 const levelDict = {
     '200': '环保萌新',
     '500': '环保志士',
@@ -188,7 +186,12 @@ Page({
                 message: '您输入的手机号为空'
             })
         }else{
-            if(!(/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phoneNum))){
+            let userInfo = this.data.userInfo
+            userInfo.phone = phoneNum
+            this.setData({
+                userInfo: userInfo
+            })
+            /* if(!(/^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])d{8}$/.test(phoneNum))){
                 Dialog.alert({
                     message: '您输入的手机号格式错误'
                 })
@@ -198,7 +201,7 @@ Page({
                 this.setData({
                     userInfo: userInfo
                 })
-            }
+            } */
         }
     }
 })

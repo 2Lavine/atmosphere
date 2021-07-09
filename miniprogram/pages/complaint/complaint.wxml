@@ -7,9 +7,10 @@
     <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
   </van-dropdown-menu> -->
   <block wx:if="{{showSearch}}">
-    <view wx:for="{{searchComplaint}}" style="width:100%" wx:key="index">
+    <block wx:if="{{searchComplaint.length>0}}">
+      <view wx:for="{{searchComplaint}}" style="width:100%" wx:key="index">
         <van-card desc="{{item.desc}}" title="{{item.title}}" thumb="{{ item.imageURL }}" style="width:100%"
-          custom-class="customCard" thumb-class="avatar" desc-class="van-multi-ellipsis--l2" bind:tap="onGotoDetail"
+          thumb-class="avatar" desc-class="van-multi-ellipsis--l2" bind:tap="onGotoDetail"
           data-complaintid="{{item.id}}">
           <view slot="price">
             <view class="card-footer">
@@ -19,6 +20,12 @@
           </view>
         </van-card>
       </view>
+    </block>
+    <block wx:else>
+      <view class="empty-result">
+        暂时找不到相关搜索
+      </view>
+    </block>
   </block>
   <block wx:else>
 
@@ -44,20 +51,26 @@
         </view>
       </view>
     </view>
-    <view class="card" style="height:auto;padding-bottom:20rpx">
+    <view class="card" style="height:auto;padding-bottom:20rpx;margin-bottom:20rpx">
       <view class="table-name">当月热门投诉</view>
-      <view wx:for="{{hotComplaint}}" style="width:100%" wx:key="index">
-        <van-card desc="{{item.desc}}" title="{{item.title}}" thumb="{{ item.imageURL }}" style="width:100%"
-          custom-class="customCard" thumb-class="avatar" desc-class="van-multi-ellipsis--l2" bind:tap="onGotoDetail"
-          data-complaintid="{{item.id}}">
-          <view slot="price">
-            <view class="card-footer">
-              <view>{{item.status}}</view>
-              <view>{{item.date}}</view>
+      <van-skeleton row="2" loading="{{ showSkeleton }}" avatar avatar-shape="square" avatar-size='160rpx'>
+        <view wx:for="{{hotComplaint}}" style="width:100%" wx:key="index">
+          <van-card desc="{{item.desc}}" title="{{item.title}}" thumb="{{ item.imageURL }}" style="width:100%"
+            custom-class="customCard" thumb-class="avatar" desc-class="van-multi-ellipsis--l2" bind:tap="onGotoDetail"
+            data-complaintid="{{item.id}}">
+            <view slot="price">
+              <view class="card-footer">
+                <view>{{item.status}}</view>
+                <view>{{item.date}}</view>
+              </view>
             </view>
-          </view>
-        </van-card>
-      </view>
+          </van-card>
+        </view>
+      </van-skeleton>
+      <van-skeleton style="margin-top:20rpx" row="2" loading="{{ showSkeleton }}" avatar avatar-shape="square"
+        avatar-size='160rpx'></van-skeleton>
+      <van-skeleton style="margin-top:20rpx" row="2" loading="{{ showSkeleton }}" avatar avatar-shape="square"
+        avatar-size='160rpx'></van-skeleton>
     </view>
   </block>
   <van-icon wx:if="{{showSearch}}" name="wap-home" color="#50ADBD" bind:click="onGotoForm" size="3rem" class="add-icon"
