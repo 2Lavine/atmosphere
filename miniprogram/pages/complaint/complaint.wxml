@@ -8,8 +8,7 @@
   </van-dropdown-menu> -->
   <block wx:if="{{showSearch}}">
     <view wx:for="{{searchComplaint}}" style="width:100%" wx:key="index">
-      <van-card desc="{{item.desc}}" title="{{item.title}}" thumb="{{ item.imageURL }}" style="width:100%"
-        custom-class="customCard" thumb-class="avatar" desc-class="van-multi-ellipsis--l2" bind:tap="onGotoDetail"
+      <van-card desc="{{item.desc}}" title="{{item.title}}" thumb="{{ item.imageURL }}" style="width:100%" thumb-class="avatar" desc-class="van-multi-ellipsis--l2" bind:tap="onGotoDetail"
         data-complaintid="{{item.id}}">
         <view slot="price">
           <view class="card-footer">
