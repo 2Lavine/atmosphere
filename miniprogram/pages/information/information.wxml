@@ -48,7 +48,7 @@
 </view>
 <view class="news-box">
     <van-collapse accordion value="{{ activeName }}" bind:change="CollapseChange">
-        <view wx:for="{{newsArr}}">
+        <view wx:for="{{newsArr}}" wx:key="index">
             <van-collapse-item  title="{{item.title}}" name="{{index}}">
                 {{item.content}}
             </van-collapse-item>

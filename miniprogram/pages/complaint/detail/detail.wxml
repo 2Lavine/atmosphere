@@ -30,7 +30,7 @@
       model:value="{{ comment }}" placeholder="留下你的评论" border="{{ false }}" />
   </van-cell-group>
   <block wx:if="{{comments}}">
-    <view class="card">
+    <view class="card" style="margin-bottom:40rpx">
       <view wx:for="{{comments}}" style="width:100%" wx:key="index">
         <van-card desc="{{item.desc}}" title="{{item.title}}" style="width:100%" custom-class="customCard"
           thumb-class="avatar" desc-class="descClass" thumb-mode="aspectFill" thumb="{{item.avatar}}">

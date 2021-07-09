@@ -33,12 +33,12 @@
           <view class="bottom-item-diff">{{b}}</view>
         </view>
         <view class="bottom-item">
-          <view class="bottom-item-name blue-circle">当月受理</view>
+          <view class="bottom-item-name blue-circle">当月处理</view>
           <view class="bottom-item-number">{{c}}</view>
           <view class="bottom-item-diff">{{d}}</view>
         </view>
         <view class="bottom-item ">
-          <view class="bottom-item-name yellow-circle">当月受理</view>
+          <view class="bottom-item-name yellow-circle">当月整改</view>
           <view class="bottom-item-number">{{e}}</view>
           <view class="bottom-item-diff">{{f}}</view>
         </view>

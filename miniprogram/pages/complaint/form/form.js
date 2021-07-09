@@ -1,6 +1,7 @@
 // miniprogram/pages/complaint/form/form.js
 import {
-    createNewComplaint
+    createNewComplaint,
+    increaseExp
 } from '../../../apis/complaintApi'
 import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
 let pic64 = ''
@@ -13,6 +14,18 @@ map.set('餐厅直排油烟', {
 })
 map.set('柴油车排放黑烟', {
     quickCategoryText: '柴油车排放黑烟',
+    categoryText: '交通运输',
+    categoryNumber: '1',
+    complaintDescription: "柴油车直接排放了油烟"
+})
+map.set('居民燃放烟花爆竹', {
+    quickCategoryText: '居民燃放烟花爆竹',
+    categoryText: '交通运输',
+    categoryNumber: '1',
+    complaintDescription: "柴油车直接排放了油烟"
+})
+map.set('工地排放烟尘', {
+    quickCategoryText: '工地排放烟尘',
     categoryText: '交通运输',
     categoryNumber: '1',
     complaintDescription: "柴油车直接排放了油烟"
@@ -177,11 +190,11 @@ Page({
                 loadingshow: true
             })
             createNewComplaint(formObj).then(res => {
-                console.log(res);
                 this.setData({
                     loadingshow: false
                 })
                 if (res.data.status === 'success') {
+                    increaseExp(app.globalData.openId, 100, "发起一个投诉")
                     Dialog.confirm({
                             title: '提交成功',
                             message: '点击和小伙伴分享哦',
