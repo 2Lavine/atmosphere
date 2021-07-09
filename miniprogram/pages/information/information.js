@@ -125,7 +125,6 @@ Page({
         // 获取今日大气信息
         weatherApi.GetNowAirInfo(cityId).then(res => {
             if (res.data.code == 200) {
-                console.log(res.data)
                 let airNow = res.data.now
                 let detail = []
 
