@@ -20,15 +20,15 @@ map.set('柴油车排放黑烟', {
 })
 map.set('居民燃放烟花爆竹', {
     quickCategoryText: '居民燃放烟花爆竹',
-    categoryText: '交通运输',
-    categoryNumber: '1',
-    complaintDescription: "柴油车直接排放了油烟"
+    categoryText: '居民生活',
+    categoryNumber: '3',
+    complaintDescription: "烟花爆竹被居民燃放了"
 })
 map.set('工地排放烟尘', {
     quickCategoryText: '工地排放烟尘',
-    categoryText: '交通运输',
-    categoryNumber: '1',
-    complaintDescription: "柴油车直接排放了油烟"
+    categoryText: '工业生产',
+    categoryNumber: '0',
+    complaintDescription: "工地有大量的烟尘"
 })
 const app = getApp();
 Page({
@@ -194,7 +194,7 @@ Page({
                     loadingshow: false
                 })
                 if (res.data.status === 'success') {
-                    increaseExp(app.globalData.openId, 100, "发起一个投诉")
+                    increaseExp(app.globalData.openId, 50, "发起一个投诉")
                     Dialog.confirm({
                             title: '提交成功',
                             message: '点击和小伙伴分享哦',

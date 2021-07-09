@@ -1,6 +1,8 @@
 // miniprogram/pages/complaint/complaint.js
 import * as echarts from '../../components/ec-canvas/echarts';
-import {baseURL} from '../../config/requestConfig'
+import {
+    baseURL
+} from '../../config/requestConfig'
 import {
     getMonthData,
     getMonthHotComplaint,
@@ -38,7 +40,6 @@ function initChart(canvas, width, height, dpr) {
         },
         calculable: true,
         series: [{
-            name: '金字塔',
             label: false,
             labelLine: false,
             type: 'funnel',
@@ -60,26 +61,28 @@ Page({
      * 页面的初始数据
      */
     data: {
-        hotComplaint: [{
-            desc: 'descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc',
-            title: '123',
-            imageURL: '../../../../pages/complaint/pic.webp',
-            id: '0329',
-            status: '处理中',
-            date: '2021-2-2',
-        }, {
-            desc: 'descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc',
-            title: '123',
-            imageURL: '../../../../pages/complaint/pic.webp',
-            id: '0329',
-            status: '处理中',
-            date: '2021-2-2'
-        }],
+        hotComplaint: [],
+        // {
+        //     desc: 'descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc',
+        //     title: '123',
+        //     imageURL: '../../../../pages/complaint/pic.webp',
+        //     id: '0329',
+        //     status: '处理中',
+        //     date: '2021-2-2',
+        // }, {
+        //     desc: 'descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc',
+        //     title: '123',
+        //     imageURL: '../../../../pages/complaint/pic.webp',
+        //     id: '0329',
+        //     status: '处理中',
+        //     date: '2021-2-2'
+        // }
         ec: {
             onInit: initChart
         },
-        searchComplaint:[],
-        showSearch: false
+        searchComplaint: [],
+        showSearch: false,
+        showSkeleton: true,
     },
     onGoDetail() {
         console.log(233);
@@ -134,7 +137,8 @@ Page({
                 }
             })
             this.setData({
-                hotComplaint
+                hotComplaint,
+                showSkeleton:false
             })
         });
     },
@@ -223,7 +227,7 @@ Page({
                         searchComplaint,
                         showSearch: true
                     })
-                   
+
                 })
         }
     },

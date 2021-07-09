@@ -38,7 +38,7 @@ Page({
       // })
       mineApi.GetNotificationContent('ofMdQ5DGjTa7Qb2yZCecP5duEQzs').then(res => {
         console.log("yes")
-        console.log(res.date)
+        console.log(res)
       })
     },
 
