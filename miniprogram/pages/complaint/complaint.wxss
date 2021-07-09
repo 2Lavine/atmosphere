@@ -115,7 +115,13 @@
 .customCard {
   background-color: white !important;
 }
-.card-footer{
+
+.card-footer {
   display: flex;
   justify-content: space-between;
+}
+
+.empty-result {
+  margin: 20rpx;
+  color: rgba(0, 0, 0, .3)
 }
