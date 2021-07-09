@@ -104,6 +104,11 @@
   align-items: center;
 }
 
+.next-wrapper{
+  display: flex;
+  align-items: center;
+}
+
 /* .list{
   background-color: #FAE18E;
 } */
