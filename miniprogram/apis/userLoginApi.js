@@ -26,7 +26,6 @@ function TryToLogin(){
 function Register(openId, userInfo){
   return new Promise(function(resolve,reject){
     userInfo['userid'] = openId
-    console.log(userInfo)
     wx.request({
       url: baseURL + '/Login/Register',
       method: 'POST',

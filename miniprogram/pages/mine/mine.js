@@ -105,20 +105,17 @@ Page({
                     exp: 0,
                     phone: ''
                 }
-                that.setData({
-                    userInfo: userInfo,
-                    isUserLogin: true
-                })
+                app.globalData.isUserLogin = true
                 app.globalData.userInfo = userInfo
-                that.Refresh()
                 
                 let tempUserInfo = {
                     avatar: res.userInfo.avatarUrl,
                     name: res.userInfo.nickName
                 }
-                console.log(app.globalData.openId)
                 userLoginApi.Register(app.globalData.openId, tempUserInfo).then(res => {
                     console.log(res)
+                    
+                    that.Refresh()
                     wx.showToast({
                         title: '登陆成功',
                     })
