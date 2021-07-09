@@ -8,7 +8,7 @@ import {
 function getMonthData() {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+"/Front/DataCount",
+      url: baseURL + "/Front/DataCount",
       method: 'GET',
       success(res) {
         resolve(res)
@@ -27,7 +27,7 @@ function getMonthData() {
 function getMonthHotComplaint() {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/PopComplaints',
+      url: baseURL + '/Front/PopComplaints',
       method: 'GET',
       success(res) {
         resolve(res)
@@ -47,7 +47,7 @@ function getMonthHotComplaint() {
 function getSearchResult(keyword) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/searchComplaints/' + keyword,
+      url: baseURL + '/Front/searchComplaints/' + keyword,
       method: 'GET',
       success(res) {
         resolve(res)
@@ -67,7 +67,7 @@ function getSearchResult(keyword) {
 function createNewComplaint(formData) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/NewComplaint',
+      url: baseURL + '/Front/NewComplaint',
       data: {
         ...formData
       },
@@ -89,7 +89,7 @@ function createNewComplaint(formData) {
 function getAllComments(complaintId) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/getComments/' + complaintId,
+      url: baseURL + '/Front/getComments/' + complaintId,
       method: 'GET',
       success(res) {
         resolve(res)
@@ -108,7 +108,7 @@ function getAllComments(complaintId) {
 function createNewComment(commentData) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/Comment/1',
+      url: baseURL + '/Front/Comment/1',
       data: {
         ...commentData
       },
@@ -131,7 +131,7 @@ function createNewComment(commentData) {
 function deleteComplaint(complaintId) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/NoticesNum/',
+      url: baseURL + '/Front/NoticesNum/',
       method: 'GET',
       success(res) {
         resolve(res)
@@ -150,11 +150,34 @@ function deleteComplaint(complaintId) {
 function followComplaint(follow, complaintId, userid) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/Star/' + follow,
+      url: baseURL + '/Front/Star/' + follow,
       method: 'POST',
       data: {
         id: +complaintId,
         userid,
+      },
+      success(res) {
+        resolve(res)
+      },
+      fail() {
+        reject("服务错误")
+      }
+    })
+  })
+}
+/**
+ * 获得升级经验
+ */
+
+function increaseExp(userid, exp, reason) {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: baseURL + '/Front/ExpIncrease/',
+      method: 'POST',
+      data: {
+        userid,
+        exp,
+        reason
       },
       success(res) {
         resolve(res)
@@ -172,7 +195,7 @@ function followComplaint(follow, complaintId, userid) {
 function getComplaintDetail(complaintId, userid) {
   return new Promise(function (resolve, reject) {
     wx.request({
-      url: baseURL+'/Front/ComplaintContent/' + complaintId,
+      url: baseURL + '/Front/ComplaintContent/' + complaintId + '/' + userid,
       method: 'GET',
       data: {
         userid
@@ -196,5 +219,6 @@ export {
   deleteComplaint,
   getComplaintDetail,
   followComplaint,
-  getAllComments
+  getAllComments,
+  increaseExp
 }

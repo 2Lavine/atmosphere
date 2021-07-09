@@ -87,7 +87,7 @@ Page({
     GetLevelMaxExp(exp){
         let tempArr = Object.keys(levelDict)
         for (let i = 0; i < tempArr.length; i++) {
-            if (exp <= tempArr[i]) {
+            if (exp < tempArr[i]) {
                 return tempArr[i]
             }
         }

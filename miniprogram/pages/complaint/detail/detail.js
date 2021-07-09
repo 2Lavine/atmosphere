@@ -4,6 +4,7 @@ import {
     createNewComment,
     followComplaint,
     getAllComments,
+    increaseExp,
     deleteComplaint
 } from '../../../apis/complaintApi'
 import {
@@ -100,6 +101,7 @@ Page({
         })
         createNewComment(commentObj).then(res => {
             console.log(res)
+            increaseExp(app.globalData.openId, 50, "评论成功")
         })
     },
     /**
@@ -109,7 +111,7 @@ Page({
         let {
             complaintId
         } = options
-        getComplaintDetail(+complaintId,app.globalData.openId).then(res => {
+        getComplaintDetail(+complaintId, app.globalData.openId).then(res => {
             console.log(res);
             let {
                 description,
@@ -135,7 +137,7 @@ Page({
                 activeStep: state,
                 complaintId,
                 userstar,
-                likeNumber: stars ,
+                likeNumber: stars,
             };
             if (userstar) {
                 dataObj.likeName = 'like'

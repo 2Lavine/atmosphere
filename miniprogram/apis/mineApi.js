@@ -1,3 +1,5 @@
+import {baseURL, jsonHeaders} from '../config/requestConfig'
+
 /**
  * 获取排名信息
  */
